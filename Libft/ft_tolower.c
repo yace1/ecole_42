@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:50:35 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:08 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 13:12:08 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 13:17:48 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
-int	ft_isascii(int c)
+#include <ctype.h>
+#include <stdio.h>
+
+int	ft_tolower(int c)
 {
-	if (c >= 0 && c <= 127)
+	if (c >= 65 && c <= 90)
 	{
-		return (1);
+		return (c + 32);
 	}
 	else
 	{
-		return (0);
+		return (c);
 	}
 }
+
 // int main(){
-// 	printf("%d\n", isascii(49));
-// 	printf("%d", ft_isascii(49));
-//     return(0);
+// 	printf("%c\n", tolower('Z'));
+// 	printf("%c", ft_tolower('Z'));
+//     return (0);
 // }

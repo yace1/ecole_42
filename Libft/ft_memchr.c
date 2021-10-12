@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:50:35 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:08 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 15:18:02 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 15:32:43 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
-int	ft_isascii(int c)
+#include <stdio.h>
+#include <string.h>
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (c >= 0 && c <= 127)
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = (char *)s;
+	while (str[i] && i < (int)n)
 	{
-		return (1);
+		if (str[i] == c)
+		{
+			return ((void *)&(str[i]));
+		}
+		i++;
 	}
-	else
-	{
-		return (0);
-	}
+	return (0);
 }
-// int main(){
-// 	printf("%d\n", isascii(49));
-// 	printf("%d", ft_isascii(49));
-//     return(0);
+
+// int main()
+// {
+// 	char str[] = "loooofgnd123vbgl";
+//     char c = '2';
+// 	    printf("%s\n",ft_memchr(str, c, 10));
+//     	printf("%s",memchr(str, c, 10)); 
 // }

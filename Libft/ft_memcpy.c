@@ -1,42 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/12 11:10:05 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 12:47:02 by ybentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
-unsigned long	ft_strlen(char *str)
+
+//gestion erreur
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	int	i;
+	int				i;
+	unsigned char	*dst1;
+	unsigned char	*src1;
 
 	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-void    *ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
-{
-	int	i;
-    unsigned char *dst1;
-    unsigned char *src1;
-
-	i = 0;
-    dst1 = (unsigned char*)dst;
-    src1 = (unsigned char*)src;
+	dst1 = (unsigned char *)dst;
+	src1 = (unsigned char *)src;
 	while (i < (int)n)
 	{
 		dst1[i] = src1[i];
 		i++;
 	}
-    dst = (void *restrict)dst1;
+	dst = (void *restrict)dst1;
 	return (dst);
 }
 
-int main()
-{
-	const void* str[15];
-    str = "aaaaafgndfgxvbgl";
-    const void* dest[15];
-    str = "bbbbbfgndfgxvbgl";
-	    printf("%s\n",ft_memcpy(str, 'a', 4));
-    	//printf("%s",memcpy(str1, str, 4)); 
-}
+// int main()
+// {
+// 	char str[]= "aaaaafgndfgxvbgl";
+//     //void* dest[15];
+//     char dst[]= "bbbbbfgndfgxvbgl";
+// 	    printf("%s\n",memcpy(str, dst, 4));
+//     	printf("%s",memcpy(str, dst, 4)); 
+// }

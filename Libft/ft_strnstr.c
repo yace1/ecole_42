@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:51:40 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 15:45:21 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 15:40:33 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 16:06:47 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -26,10 +25,33 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (needle[0] == 0)
+		return ((char *)haystack);
+	while (haystack[i] && i < (int)len)
+	{
+		j = 0;
+		while (haystack[i + j] == needle[j])
+		{
+			if (needle[j + 1] == 0)
+				return ((char *)haystack + i);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 // int main()
 // {
-// 	char *str;
-// 	str = "loooofgndfgxvbgl";
-// 	    printf("%lu",ft_strlen(str));
-//     	printf("%lu",strlen(str));
+// 	char str[] = "aa1caa12aaaakaaa";
+//     char str1[] = "123";
+// 	    printf("%s\n",ft_strnstr(str, str1, 10));
+//     	printf("%s",strnstr(str, str1, 10)); 
+// 		return (0);
 // }

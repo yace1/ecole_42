@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:50:35 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:08 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 13:05:04 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 13:08:19 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
-int	ft_isascii(int c)
+#include <ctype.h>
+#include <stdio.h>
+
+int	ft_toupper(int c)
 {
-	if (c >= 0 && c <= 127)
+	if (c >= 97 && c <= 122)
 	{
-		return (1);
+		return (c - 32);
 	}
 	else
 	{
-		return (0);
+		return (c);
 	}
 }
 // int main(){
-// 	printf("%d\n", isascii(49));
-// 	printf("%d", ft_isascii(49));
-//     return(0);
+// 	printf("%c\n", toupper('`'));
+// 	printf("%c", ft_toupper('`'));
 // }

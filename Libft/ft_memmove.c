@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:51:23 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:11 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 11:16:59 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 11:29:14 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+//gestion erreur
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	int				i;
-	unsigned char	*str;
+	unsigned char	*dst1;
+	unsigned char	*src1;
 
-	str = (unsigned char *)b;
 	i = 0;
+	dst1 = (unsigned char *)dst;
+	src1 = (unsigned char *)src;
 	while (i < (int)len)
 	{
-		str[i] = (unsigned char)c;
+		dst1[i] = src1[i];
 		i++;
 	}
-	return (b);
+	dst = (void *restrict)dst1;
+	return (dst);
 }
+
 // int main()
 // {
-// 	char str[] = "loooofgndfgxvbgl";
-//     char str1[] = "loooofgndfgxvbgl";
-// 	    printf("%s\n",ft_memset(str, 'a', 6));
-//     	printf("%s",memset(str1, 'a', 6)); 
+// 	char str[]= "aaaaafgndfgxvbgl";
+//     //void* dest[15];
+//     char dst[]= "bbbbbfgndfgxvbgl";
+// 	    printf("%s\n",ft_memmove(str, dst, 4));
+//     	printf("%s",memmove(str, dst, 4)); 
 // }

@@ -1,29 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:50:35 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:08 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 14:22:22 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 14:48:59 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
-int	ft_isascii(int c)
+#include <stdio.h>
+#include <string.h>
+
+char	*ft_strrchr(const char *s, int c)
 {
-	if (c >= 0 && c <= 127)
+	int		i;
+	char	*str;
+
+	str = 0;
+	while (s[i])
 	{
-		return (1);
+		i++;
 	}
-	else
+	i--;
+	while (s[i] && i >= 0)
 	{
-		return (0);
+		if (s[i] == c)
+		{
+			str = (char *)&s[i];
+			return (str);
+		}
+		i--;
 	}
+	return (0);
 }
-// int main(){
-// 	printf("%d\n", isascii(49));
-// 	printf("%d", ft_isascii(49));
-//     return(0);
+
+// int main()
+// {
+// 	char str[] = "loooofgndfgxvbgl";
+//     char c = 'o';
+// 	    printf("%s\n",ft_strrchr(str, c));
+//     	printf("%s",strrchr(str, c)); 
 // }

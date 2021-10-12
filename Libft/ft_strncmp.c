@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:51:23 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:11 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 14:52:08 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 15:15:35 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int				i;
-	unsigned char	*str;
+	int	i;
 
-	str = (unsigned char *)b;
 	i = 0;
-	while (i < (int)len)
+	if (n == 0)
 	{
-		str[i] = (unsigned char)c;
+		return (0);
+	}
+	while (s1[i] != 0 && s2[i] != 0 && i < n)
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (b);
+	return (0);
 }
+
 // int main()
 // {
-// 	char str[] = "loooofgndfgxvbgl";
-//     char str1[] = "loooofgndfgxvbgl";
-// 	    printf("%s\n",ft_memset(str, 'a', 6));
-//     	printf("%s",memset(str1, 'a', 6)); 
+// 	char str[] = "aaacaaaaaaaakaaa";
+//     char str1[] = "aaacaaaaaaakaaa";
+// 	    printf("%d\n",ft_strncmp(str, str1, (unsigned int)5));
+//     	printf("%d",strncmp(str, str1, (unsigned int)5)); 
 // }

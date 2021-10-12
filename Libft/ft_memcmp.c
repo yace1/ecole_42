@@ -1,36 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:51:23 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:11 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 15:29:34 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 16:07:13 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int				i;
-	unsigned char	*str;
+	int		i;
+	char	*str1;
+	char	*str2;
 
-	str = (unsigned char *)b;
+	str1 = (char *)s1;
+	str2 = (char *)s2;
 	i = 0;
-	while (i < (int)len)
+	if (n == 0)
 	{
-		str[i] = (unsigned char)c;
+		return (0);
+	}
+	while (str1[i] != 0 && str2[i] != 0 && i < n)
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
 		i++;
 	}
-	return (b);
+	return (0);
 }
+
 // int main()
 // {
-// 	char str[] = "loooofgndfgxvbgl";
-//     char str1[] = "loooofgndfgxvbgl";
-// 	    printf("%s\n",ft_memset(str, 'a', 6));
-//     	printf("%s",memset(str1, 'a', 6)); 
+// 	char str[] = "aa";
+//     char str1[] = "aa";
+// 	    printf("%d\n",ft_memcmp(str, str1, (unsigned int)5));
+//     	printf("%d",memcmp(str, str1, (unsigned int)5)); 
+// 		return (0);
 // }

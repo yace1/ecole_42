@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 10:51:23 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:11 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/12 12:47:16 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/12 12:59:03 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+size_t	*ft_strlcat(char *restrict dst, const char *restrict src, size_t n)
 {
-	int				i;
-	unsigned char	*str;
+	unsigned int	i;
+	unsigned int	j;
 
-	str = (unsigned char *)b;
 	i = 0;
-	while (i < (int)len)
+	j = 0;
+	while (dst[i] != '\0')
 	{
-		str[i] = (unsigned char)c;
 		i++;
 	}
-	return (b);
+	while (src[j] != '\0' && j < n)
+	{
+		dst[i + j] = src[j];
+		j++;
+	}
+	dst[i + j] = '\0';
+	return (i + j);
 }
 // int main()
 // {
-// 	char str[] = "loooofgndfgxvbgl";
-//     char str1[] = "loooofgndfgxvbgl";
-// 	    printf("%s\n",ft_memset(str, 'a', 6));
-//     	printf("%s",memset(str1, 'a', 6)); 
+// 	char str[]= "aaaaa";
+//     //void* dest[15];
+//     char dst[15] = "bbbbb";
+// 	printf("%d\n",strlcat(str, dst, 6));
+// 	printf("%d",ft_strlcat(str, dst, 6)); 
 // }
