@@ -25,10 +25,10 @@ char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 
-int main()
-{
-	char str[] = "aaaaaaa";
-	    printf("%s\n",ft_strdup(str));
-		printf("%s\n",strdup(str));
-		return (0);
-}
+// int main()
+// {
+// 	char str[] = "aaaaaaa";
+// 	    printf("%s\n",ft_strdup(str));
+// 		printf("%s\n",strdup(str));
+// 		return (0);
+// }
