@@ -6,35 +6,30 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 14:52:08 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 15:15:35 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:45:43 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (n == 0)
 	{
 		return (0);
 	}
-	while (s1[i] != 0 && s2[i] != 0 && i < n)
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+	while (--n && s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-	}
-	return (0);
+	return((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
 // int main()
 // {
-// 	char str[] = "aaacaaaaaaaakaaa";
-//     char str1[] = "aaacaaaaaaakaaa";
+// 	char str[] = "1234";
+//     char str1[] = "1235";
 // 	    printf("%d\n",ft_strncmp(str, str1, (unsigned int)5));
 //     	printf("%d",strncmp(str, str1, (unsigned int)5)); 
 // }

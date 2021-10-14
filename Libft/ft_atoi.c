@@ -6,25 +6,11 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:08:39 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 22:30:07 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/13 19:53:09 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
-}
+#include "libft.h"
 
 char	*remove_space(char *str)
 {

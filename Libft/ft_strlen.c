@@ -6,13 +6,11 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:51:40 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 22:30:04 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/13 11:49:20 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 size_t	ft_strlen(char *str)
 {

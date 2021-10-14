@@ -6,38 +6,49 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 12:47:16 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 12:59:03 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/14 13:52:21 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
-size_t	*ft_strlcat(char *restrict dst, const char *restrict src, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
+	unsigned int	dest_len;
+	unsigned int	src_len;
+	unsigned int	res;
 	unsigned int	i;
 	unsigned int	j;
 
+	src_len = ft_strlen((char *)src);
+	dest_len = ft_strlen((char *)dst);
 	i = 0;
-	j = 0;
-	while (dst[i] != '\0')
+	j = dest_len;
+	if (dstsize - 1 > dest_len && dstsize > 0)
 	{
-		i++;
+		while(src[i] && dest_len + i < dstsize - 1)
+		{
+			dst[j] = src[i];
+			i++;
+			j++;
+		}
+		dst[j] = '\0';
 	}
-	while (src[j] != '\0' && j < n)
-	{
-		dst[i + j] = src[j];
-		j++;
-	}
-	dst[i + j] = '\0';
-	return (i + j);
+	if (dest_len >= dstsize)
+		res = src_len + dstsize;
+	else
+		res = src_len + dest_len;
+	return (res);
 }
 // int main()
 // {
-// 	char str[]= "aaaaa";
-//     //void* dest[15];
-//     char dst[15] = "bbbbb";
-// 	printf("%d\n",strlcat(str, dst, 6));
-// 	printf("%d",ft_strlcat(str, dst, 6)); 
+// 	char str[]= "acaa";
+//
+//     char dst[15] = "BB";
+// 	char dst1[15] = "BB";
+// 
+// 	printf("%zu\n",strlcat(dst, str, 2));
+// 	printf("%s\n", dst);
+// 	printf("%zu\n",ft_strlcat(dst1, str, 2));
+// 	printf("%s", dst1);
 // }

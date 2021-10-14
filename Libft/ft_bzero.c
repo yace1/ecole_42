@@ -6,11 +6,11 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:51:31 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:12 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/13 20:32:39 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_bzero(char *s, size_t n)
 {
@@ -20,7 +20,7 @@ void	ft_bzero(char *s, size_t n)
 	if (n == 0)
 	{
 	}
-	while (i < n)
+	while (i < (int)n)
 	{
 		s[i] = 0;
 		i++;

@@ -6,19 +6,19 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 21:42:07 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 22:30:12 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/13 13:27:44 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-void	*calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	char			*ptr;
 	int				i;
 	unsigned int	total;
 
+	i = 0;
 	total = count * size;
 	if(total == 0)
 		return (0);

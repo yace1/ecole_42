@@ -6,13 +6,11 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 11:16:59 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:14 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/14 13:42:10 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 //gestion erreur
 void	*ft_memmove(void *dst, const void *src, size_t len)
@@ -24,10 +22,23 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	i = 0;
 	dst1 = (unsigned char *)dst;
 	src1 = (unsigned char *)src;
-	while (i < (int)len)
+	if (dst == 0 && src == 0)
+		return (0);
+	if (dst1 > src1)
 	{
-		dst1[i] = src1[i];
-		i++;
+		while (i < (int)len)
+		{
+			dst1[len - 1] = src1[len - 1];
+			len--;
+		}
+	}
+	else
+	{
+		while (i < (int)len)
+		{
+			dst1[i] = src1[i];
+			i++;
+		}
 	}
 	dst = (void *restrict)dst1;
 	return (dst);
@@ -41,3 +52,4 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 // 	    printf("%s\n",ft_memmove(str, dst, 4));
 //     	printf("%s",memmove(str, dst, 4)); 
 // }
+

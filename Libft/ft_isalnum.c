@@ -6,14 +6,15 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:51:45 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:13 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:41:14 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
+#include "libft.h"
+
 int	ft_isalnum(int c)
 {
-	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 91) || (c >= 97 && c <= 122))
+	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 	{
 		return (1);
 	}

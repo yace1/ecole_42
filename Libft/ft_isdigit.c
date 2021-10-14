@@ -6,11 +6,12 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:51:12 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 13:17:53 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/13 11:49:13 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <ctype.h>
+#include "libft.h"
+
 int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)

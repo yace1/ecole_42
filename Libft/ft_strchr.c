@@ -6,26 +6,28 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 14:22:22 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/12 14:50:15 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/14 13:28:30 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
 	int		i;
-	char	*str;
 
-	str = 0;
+	i = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 		{
-			return ((char *)&(s[i]));
+			return ((char *)(s + i));
 		}
 		i++;
+	}
+	if (s[i] == c)
+	{
+		return ((char *)(s + i));
 	}
 	return (0);
 }
