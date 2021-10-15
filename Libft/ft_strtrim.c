@@ -29,8 +29,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	end = ft_strlen((char *)s1);
 	i = 0;
-	if (set == 0 || s1 == 0)
-		return 0;
+    if (s1 == 0 && set == 0)
+        return (0);
+	if (s1 == 0)
+		return (0);
+    if (set == 0)
+		return (ft_strdup(s1));
 	while(search_in((char)s1[start], set))
 	{
 		start++;
@@ -39,6 +43,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	{
 		end--;
 	}
+    if (start >= end)
+        return (ft_strdup(""));
 	str = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (!str)
 		return (0);
@@ -52,11 +58,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (str);
 }
 
-int main()
-{
-	char *s1 = "";
-	char *s2 = "";
-	printf("%s",ft_strtrim(s1,s2));
-	return (0);
-}
+// int main()
+// {
+// 	char *s1 = "  \t \t \n   \n\n\n\t";
+// 	char *s2 = " \n\t";
+// 	printf("%s",ft_strtrim(s1,s2));
+// 	return (0);
+// }
 
