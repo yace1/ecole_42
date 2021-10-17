@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 11:10:05 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/13 20:33:11 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/15 10:53:40 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 	i = 0;
 	dst1 = (unsigned char *)dst;
 	src1 = (unsigned char *)src;
-	if (dst == NULL && src == NULL)
+	if (dst == 0 && src == 0)
 		return (NULL);
 	if (n <= 0 || n >= 4294967295)
 		return (dst);

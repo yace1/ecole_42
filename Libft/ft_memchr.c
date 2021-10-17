@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:18:02 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/14 13:27:56 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/17 10:25:25 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	int		i;
 
 	i = 0;
-
 	while (i < (int)n)
 	{
 		if (*(unsigned char *)(s + i) == (unsigned char)c)
