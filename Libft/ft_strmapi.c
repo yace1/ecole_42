@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 14:22:22 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/17 17:53:21 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/17 15:59:09 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/17 16:22:34 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	int		i;
+	int 	len;
+	char	*str;
 
 	i = 0;
+	if (s == 0 || f == NULL)
+		return (0);
+	len = ft_strlen((char *)s);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
 	while (s[i])
 	{
+		str[i] = f((unsigned int)i, s[i]);
 		i++;
 	}
-	while (i >= 0)
-	{
-		if (*(char *)(s + i) == (char)c)
-		{
-			return ((char *)(s + i));
-		}
-		i--;
-	}
-	return (0);
+	str[i] = 0;
+	return (str);
 }
 
 // int main()
 // {
-// 	char str[] = "123456";
-//     char c = '6';
-// 	    printf("%s\n",ft_strrchr(str, c));
-//     printf("%s",strrchr(str, c)); 
+// 	char str[] = "aaaaaaa";
+	
+
+// 	return (0);
 // }

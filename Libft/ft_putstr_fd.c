@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 14:22:22 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/17 17:53:21 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/17 16:32:07 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/17 16:35:32 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int		i;
+	int	i;
 
+	if (s == 0)
+		return (void)(0);
 	i = 0;
 	while (s[i])
 	{
+		write(fd, &s[i], 1);
 		i++;
 	}
-	while (i >= 0)
-	{
-		if (*(char *)(s + i) == (char)c)
-		{
-			return ((char *)(s + i));
-		}
-		i--;
-	}
-	return (0);
 }
-
-// int main()
-// {
-// 	char str[] = "123456";
-//     char c = '6';
-// 	    printf("%s\n",ft_strrchr(str, c));
-//     printf("%s",strrchr(str, c)); 
-// }

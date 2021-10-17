@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 14:22:22 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/17 17:53:21 by ybentaye         ###   ########.fr       */
+/*   Created: 2021/10/17 16:41:45 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/10/17 17:53:33 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void ft_putnbr_fd(int n, int fd)
 {
-	int		i;
+	char	c;
 
-	i = 0;
-	while (s[i])
+	c = '0';
+	if (n == -2147483648)
 	{
-		i++;
+		write(1, "-2147483648", 11);
+		return ;
 	}
-	while (i >= 0)
+	if (n < 0 && n != -2147483648)
 	{
-		if (*(char *)(s + i) == (char)c)
-		{
-			return ((char *)(s + i));
-		}
-		i--;
+		write(1, "-", 1);
+		n = n * -1;
+		ft_putnbr_fd(n, fd);
 	}
-	return (0);
+	else if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+	{
+		c += n;
+		write(1, &c, 1);
+	}
 }
 
-// int main()
-// {
-// 	char str[] = "123456";
-//     char c = '6';
-// 	    printf("%s\n",ft_strrchr(str, c));
-//     printf("%s",strrchr(str, c)); 
-// }
+int main()
+{
+	ft_putnbr_fd(6665, 1);
+}
