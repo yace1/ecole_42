@@ -6,16 +6,16 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 14:33:45 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/14 19:22:12 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/18 12:21:23 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start,size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char				*ptr;
-	unsigned int					lim;
+	unsigned int		lim;
 	unsigned int		i;
 
 	i = 0;
@@ -29,7 +29,7 @@ char	*ft_substr(char const *s, unsigned int start,size_t len)
 	}
 	if (start >= ft_strlen((char *)s))
 	{
-		return(ptr);
+		return (ptr);
 	}
 	while (s[start] && start < lim)
 	{
@@ -38,7 +38,6 @@ char	*ft_substr(char const *s, unsigned int start,size_t len)
 		i++;
 	}
 	ptr[i] = 0;
-
 	return (ptr);
 }
 
@@ -49,4 +48,3 @@ char	*ft_substr(char const *s, unsigned int start,size_t len)
 // 		printf("%s\n",strdup(str));
 // 		return (0);
 // }
-

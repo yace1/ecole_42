@@ -6,13 +6,22 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 11:16:59 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/14 13:42:10 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:56:04 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//gestion erreur
+char	*copy_mem(int i, unsigned int len, char *dest, char *src)
+{
+	while (i < (int)len)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
+}
+
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	int				i;
@@ -34,16 +43,11 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	else
 	{
-		while (i < (int)len)
-		{
-			dst1[i] = src1[i];
-			i++;
-		}
+		dst1 = (unsigned char *)copy_mem(i, len, (char *)dst1, (char *)src1);
 	}
 	dst = (void *restrict)dst1;
 	return (dst);
 }
-
 // int main()
 // {
 // 	char str[]= "aaaaafgndfgxvbgl";
@@ -52,4 +56,3 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 // 	    printf("%s\n",ft_memmove(str, dst, 4));
 //     	printf("%s",memmove(str, dst, 4)); 
 // }
-

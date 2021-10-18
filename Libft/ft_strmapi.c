@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 15:59:09 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/17 16:22:34 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:40:41 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	int		i;
-	int 	len;
+	int		len;
 	char	*str;
 
 	i = 0;
@@ -37,7 +37,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 // int main()
 // {
 // 	char str[] = "aaaaaaa";
-	
-
 // 	return (0);
 // }

@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 21:42:07 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/13 13:27:44 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:55:59 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,10 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	char			*ptr;
-	int				i;
-	unsigned int	total;
+	void	*res;
 
-	i = 0;
-	total = count * size;
-	if(total == 0)
-		return (0);
-
-	ptr = malloc(count * size);
-	while (total > 0)
-	{
-		ptr[i] = 0;
-		i++;
-	}
-	return (ptr);
+	res = malloc(size * count);
+	if (!res)
+		return (NULL);
+	return (res);
 }
-

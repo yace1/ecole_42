@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:36:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/17 16:38:17 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/18 11:30:24 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_putendl_fd(char *s, int fd)
 
 	c = '\n';
 	if (s == 0)
-		return (void)(0);
+		return ((void)(0));
 	i = 0;
 	while (s[i])
 	{
