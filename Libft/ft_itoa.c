@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 11:57:49 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/19 17:36:36 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/19 18:00:58 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	count(int n)
 	return (i);
 }
 
-int	fill_str(char *str, int n, int i)
+int	static fill_str(char *str, int n, int i)
 {
 	if (n == 0)
 	{
