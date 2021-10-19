@@ -6,65 +6,100 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 11:57:49 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/18 17:56:01 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:36:36 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static void	swap(char *tab, int index, int index2)
+{
+	int	s;
+
+	s = tab[index];
+	tab[index] = tab[index2];
+	tab[index2] = s;
+}
+
+static int	ft_rev_int_tab(char *tab, int size, int i, int neg)
+{
+	int	a;
+
+	a = 0;
+	while (a < size / 2)
+	{
+		swap(tab, a, size - 1 - a);
+		a++;
+	}
+	if (neg)
+		i++;
+	return (i);
+}
+
+static int	count(int n)
+{
+	int	i;
+
+	i = 0;
+	if (!n)
+		return (1);
+	while (n)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
+int	fill_str(char *str, int n, int i)
+{
+	if (n == 0)
+	{
+		str[i] = '0';
+		return (1);
+	}
+	else
+	{
+		while (n)
+		{
+			str[i] = (n % 10) + '0';
+			n /= 10;
+			i++;
+		}
+	}
+	return (i);
+}
+
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		nb;
-	int		i;
 	int		neg;
+	char	*str;
+	int		len;
+	int		i;
 
+	neg = 0;
+	i = 0;
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	nb = n;
-	i = 0;
-	neg = 0;
 	if (n < 0)
 	{
-		neg = 1;
-		nb *= -1;
-	}
-	if (nb < 10 && nb >= 0)
-	{
-		str = (char *)malloc(sizeof(char) * 2);
-		if (!str)
-			return (0);
-		str[0] = nb + 48;
-		str[1] = 0;
-		return (str);
-	}
-	if (neg)
 		n *= -1;
-	while (n > 9)
-	{
-		n = n / 10;
-		i++;
+		neg = 1;
 	}
-	if (neg)
-		i++;
-	str = (char *)malloc(sizeof(char) * (i + 1 + neg));
+	len = count(n);
+	str = malloc(sizeof(char) * (len + neg + 1));
 	if (!str)
-		return (0);
-	str[i + 1] = 0;
-	while (i > neg)
-	{
-		str[i] = (nb % 10) + 48;
-		nb = nb / 10;
-		i--;
-	}
-	str[i] = nb + 48;
+		return (NULL);
+	i = fill_str(str, n, i);
 	if (neg)
-		str[0] = '-';
+		str[i] = '-';
+	i = ft_rev_int_tab(str, len + neg, i, neg);
+	str[i] = 0;
 	return (str);
 }
 
-int main()
-{
-	printf("le resultat: %s\n",ft_itoa(0));
-	return (0);
-}
+// int main()
+// {
+// 	printf("le resultat: %s\n",ft_itoa(-55));
+// 	return (0);
+// }
