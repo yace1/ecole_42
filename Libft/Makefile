@@ -6,13 +6,15 @@
 #    By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/13 11:10:19 by ybentaye          #+#    #+#              #
-#    Updated: 2021/10/17 16:52:45 by ybentaye         ###   ########.fr        #
+#    Updated: 2021/10/19 13:06:53 by ybentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 OBJECT = $(SRC:.c=.o)
+
+OBJECT_BONUS = $(BONUS:.c=.o)
 
 SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 	ft_isdigit.c ft_isprint.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c\
@@ -21,14 +23,21 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 	ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_putchar_fd.c\
 	ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
+BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c
+
 all: $(NAME)
 
 $(NAME):
 	gcc -Wall -Werror -Wextra -c $(SRC)
 	ar rc $(NAME) $(OBJECT)
+bonus: 
+	gcc -Wall -Werror -Wextra -c $(BONUS)
+	ar rc $(NAME) $(OBJECT_BONUS)	
 clean:
 	rm -f $(OBJECT) 
+	rm -f $(OBJECT_BONUS) 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(OBJECT_BONUS) 
 
 re: fclean all
