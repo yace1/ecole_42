@@ -6,13 +6,13 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 12:39:53 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/19 17:20:45 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/20 11:22:02 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	t_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int	i;
 

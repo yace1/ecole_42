@@ -6,14 +6,14 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 10:23:25 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/18 17:55:53 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:07:57 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 // selector == 1 -> skip normal letter (non delimitor)
-char	*skip_letter(char const *s1, char c, int selector)
+static char	*skip_letter(char const *s1, char c, int selector)
 {	
 	int	i;
 	int	flag;
@@ -43,7 +43,7 @@ char	*skip_letter(char const *s1, char c, int selector)
 }
 
 //	selector == 1 -> count letter
-int	count_words(char const *s1, char c, int selector)
+static int	count_words(char const *s1, char c, int selector)
 {
 	int	res;
 	int	i;
@@ -52,15 +52,15 @@ int	count_words(char const *s1, char c, int selector)
 	res = 0;
 	if (selector == 1)
 	{
-		while (s1[i] != c)
+		while (s1[i] != c && s1[i])
 		{
 			i++;
 		}
 		return (i);
 	}
-	while (s1[i])
+	while(s1[i])
 	{
-		while (s1[i] != c)
+		while (s1[i] != c && s1[i] != '\0' && !selector)
 		{
 			if (s1[i + 1] == c || s1[i + 1] == 0)
 				res++;
@@ -71,7 +71,7 @@ int	count_words(char const *s1, char c, int selector)
 	return (res);
 }
 
-char	*copy_word(char *dst, char const *src, char c)
+static char	*copy_word(char *dst, char const *src, char c)
 {
 	int	i;
 
@@ -85,7 +85,7 @@ char	*copy_word(char *dst, char const *src, char c)
 	return (dst);
 }
 
-char	**free_tab(char **tab, int size)
+static char	**free_tab(char **tab, int size)
 {
 	while (size >= 0)
 	{
@@ -123,22 +123,22 @@ char	**ft_split(char const *s, char c)
 	return (tab);
 }
 
-// int main()
-// {
-// 	char *s1 = "\0aa\0bbb";
-// 	char c = '\0';
-// 	char **tab;
-// 	int	i = 0;
-// 	int	len = count_words(s1, c, 0);
-// 	printf("%d\n",count_words(s1,c, 1));
-// 	printf("%d\n",count_words(s1,c, 0));
-// 	//s1 = skip_words(s1,c);
-// 	tab = ft_split(s1,c);
-// 	while (i < len)
-// 	{
-// 		printf("%s\n", tab[i]);
-// 		i++;
-// 	}
+int main()
+{
+	char *s1 = "tripouille";
+	char c = ' ';
+	char **tab;
+	int	i = 0;
+	int	len = count_words(s1, c, 0);
+	printf("%d\n",count_words(s1,c, 1));
+	printf("%d\n",count_words(s1,c, 0));
+	//s1 = skip_words(s1,c);
+	tab = ft_split(s1,c);
+	while (i < len)
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
 
-// 	return (0);
-// }
+	return (0);
+}
