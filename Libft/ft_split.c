@@ -53,9 +53,7 @@ static int	count_words(char const *s1, char c, int selector)
 	if (selector == 1)
 	{
 		while (s1[i] != c && s1[i])
-		{
 			i++;
-		}
 		return (i);
 	}
 	while(s1[i])
@@ -63,7 +61,10 @@ static int	count_words(char const *s1, char c, int selector)
 		while (s1[i] != c && s1[i] != '\0' && !selector)
 		{
 			if (s1[i + 1] == c || s1[i + 1] == 0)
+			{
 				res++;
+				break;
+			}
 			i++;
 		}
 		i++;
@@ -123,22 +124,22 @@ char	**ft_split(char const *s, char c)
 	return (tab);
 }
 
-int main()
-{
-	char *s1 = "tripouille";
-	char c = ' ';
-	char **tab;
-	int	i = 0;
-	int	len = count_words(s1, c, 0);
-	printf("%d\n",count_words(s1,c, 1));
-	printf("%d\n",count_words(s1,c, 0));
-	//s1 = skip_words(s1,c);
-	tab = ft_split(s1,c);
-	while (i < len)
-	{
-		printf("%s\n", tab[i]);
-		i++;
-	}
+// int main()
+// {
+// 	char *s1 = "tripouille";
+// 	char c = ' ';
+// 	char **tab;
+// 	int	i = 0;
+// 	int	len = count_words(s1, c, 0);
+// 	printf("%d\n",count_words(s1,c, 1));
+// 	printf("%d\n",count_words(s1,c, 0));
+// 	//s1 = skip_words(s1,c);
+// 	tab = ft_split(s1,c);
+// 	while (i < len)
+// 	{
+// 		printf("%s\n", tab[i]);
+// 		i++;
+// 	}
 
-	return (0);
-}
+// 	return (0);
+// }

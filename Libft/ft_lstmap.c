@@ -16,28 +16,47 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
 {
  	t_list	*new_lst;
 	t_list	*begin_lst;
-	t_list	**begin_olst;
 
-	new_lst = malloc(sizeof(t_list));
-	if (!new_lst)
-		return (0);
-	begin_lst = new_lst;
-	begin_olst = &lst;
-	while (lst)
+	if (!lst || !f)
+		return (NULL);
+	begin_lst = ft_lstnew(f(lst->content));
+	new_lst = begin_lst;
+	while(lst->next)
 	{
-		new_lst->next = malloc(sizeof(t_list));
-		if (!new_lst)
-			return (0);
-		new_lst = new_lst->next;
 		lst = lst->next;
+		if ((new_lst->next = ft_lstnew(ft_strdup(f(lst->content)))) == NULL)
+		{
+			ft_lstclear(&begin_lst, del);
+			return (NULL);
+		}
+		new_lst = new_lst->next;
 	}
-	new_lst->next = malloc(sizeof(t_list));
-	if (!new_lst)
-		return (0);
-	ft_lstclear(&(*begin_olst), del);
-	ft_lstiter(begin_lst, (void *)(*f));
-	return(begin_lst);
+	return (begin_lst);
 }
+
+// t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*))
+// {
+// 	t_list	*begin;
+// 	t_list	*work;
+
+// 	if (lst != NULL && f != NULL)
+// 	{
+// 		begin = ft_lstnew(f(lst->content));
+// 		work = begin;
+// 		while (lst->next)
+// 		{
+// 			lst = lst->next;
+// 			if ((work->next = ft_lstnew(ft_strdup(f(lst->content)))) == NULL)
+// 			{
+// 				ft_lstclear(&begin, del);
+// 				return (NULL);
+// 			}
+// 			work = work->next;
+// 		}
+// 		return (begin);
+// 	}
+// 	return (NULL);
+// }
 
 
 
