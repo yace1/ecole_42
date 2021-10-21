@@ -6,25 +6,26 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:33:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/20 12:16:37 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:17:31 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
- 	t_list	*new_lst;
+	t_list	*new_lst;
 	t_list	*begin_lst;
 
 	if (!lst || !f)
 		return (NULL);
 	begin_lst = ft_lstnew(f(lst->content));
 	new_lst = begin_lst;
-	while(lst->next)
+	while (lst->next)
 	{
 		lst = lst->next;
-		if ((new_lst->next = ft_lstnew(ft_strdup(f(lst->content)))) == NULL)
+		new_lst->next = ft_lstnew(ft_strdup(f(lst->content)));
+		if (new_lst->next == NULL)
 		{
 			ft_lstclear(&begin_lst, del);
 			return (NULL);
@@ -57,11 +58,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
 // 	}
 // 	return (NULL);
 // }
-
-
-
-
-
 // t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
 // {
 // 	t_list	*new_lst;

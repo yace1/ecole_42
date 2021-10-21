@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*copy_join(char *str, char const *s2, int i)
+static char	*copy_join(char *str, char const *s2, int i)
 {
 	int	j;
 

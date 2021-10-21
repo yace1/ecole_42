@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*remove_space(char *str)
+static char	*remove_space(char *str)
 {
 	while (*str == '\t' || *str == '\n' || *str == '\v'
 		|| *str == '\f' || *str == '\r' || *str == ' ')

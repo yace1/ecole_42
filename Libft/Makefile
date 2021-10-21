@@ -6,7 +6,7 @@
 #    By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/13 11:10:19 by ybentaye          #+#    #+#              #
-#    Updated: 2021/10/20 12:16:59 by ybentaye         ###   ########.fr        #
+#    Updated: 2021/10/21 11:25:38 by ybentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,5 @@ clean:
 	rm -f $(OBJECT_BONUS) 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(OBJECT_BONUS) 
 
 re: fclean all 

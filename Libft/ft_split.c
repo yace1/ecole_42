@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 10:23:25 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/20 13:07:57 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:13:05 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ static int	count_words(char const *s1, char c, int selector)
 			i++;
 		return (i);
 	}
-	while(s1[i])
+	while (s1[i])
 	{
 		while (s1[i] != c && s1[i] != '\0' && !selector)
 		{
 			if (s1[i + 1] == c || s1[i + 1] == 0)
 			{
 				res++;
-				break;
+				break ;
 			}
 			i++;
 		}

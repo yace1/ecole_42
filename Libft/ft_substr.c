@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 14:33:45 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/18 12:21:23 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/21 11:15:11 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 // 	return (ptr);
 // }
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	n_len;
@@ -49,7 +49,8 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	n_len = ft_strlen(s + start);
 	if (n_len < len)
 		len = n_len;
-	if (!(substr = (char *)malloc(sizeof(char) * (len + 1))))
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
 		return (NULL);
 	ft_strlcpy(substr, s + start, len + 1);
 	return (substr);
