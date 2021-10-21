@@ -12,117 +12,213 @@
 
 #include "libft.h"
 
-// selector == 1 -> skip normal letter (non delimitor)
-static char	*skip_letter(char const *s1, char c, int selector)
-{	
-	int	i;
-	int	flag;
-	int	len;
+#include "libft.h"
+
+static char			**free_split(char **tab)
+{
+	unsigned int	i;
 
 	i = 0;
-	flag = 0;
-	while (s1[i] && !flag)
+	while (tab[i])
 	{
-		if (s1[i] != c && !selector)
-		{
-			len = i + 1;
-			flag = 1;
-		}
-		if (s1[i] == c && selector)
-		{
-			len = i + 1;
-			flag = 1;
-		}
+		free(tab[i]);
 		i++;
 	}
-	if (!selector)
-		s1 += len - 1;
-	else
-		s1 += len;
-	return ((char *)s1);
+	free(tab);
+	return (NULL);
 }
 
-//	selector == 1 -> count letter
-static int	count_words(char const *s1, char c, int selector)
+static unsigned int	count_words(char const *s, char c)
 {
-	int	res;
-	int	i;
+	unsigned int	i;
+	unsigned int	nb_strs;
 
+	if (!s[0])
+		return (0);
 	i = 0;
-	res = 0;
-	if (selector == 1)
+	nb_strs = 0;
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i])
 	{
-		while (s1[i] != c && s1[i])
-			i++;
-		return (i);
-	}
-	while (s1[i])
-	{
-		while (s1[i] != c && s1[i] != '\0' && !selector)
+		if (s[i] == c)
 		{
-			if (s1[i + 1] == c || s1[i + 1] == 0)
-			{
-				res++;
-				break ;
-			}
-			i++;
+			nb_strs++;
+			while (s[i] && s[i] == c)
+				i++;
+			continue ;
 		}
 		i++;
 	}
-	return (res);
+	if (s[i - 1] != c)
+		nb_strs++;
+	return (nb_strs);
 }
 
-static char	*copy_word(char *dst, char const *src, char c)
+static void			ft_get_next_str(char **next_str, unsigned int *next_str_len,
+					char c)
 {
-	int	i;
+	unsigned int i;
 
+	*next_str += *next_str_len;
+	*next_str_len = 0;
 	i = 0;
-	while (src[i] && src[i] != c)
+	while (**next_str && **next_str == c)
+		(*next_str)++;
+	while ((*next_str)[i])
 	{
-		dst[i] = src[i];
+		if ((*next_str)[i] == c)
+			return ;
+		(*next_str_len)++;
 		i++;
 	}
-	dst[i] = 0;
-	return (dst);
 }
 
-static char	**free_tab(char **tab, int size)
+char				**ft_split(char const *s, char c)
 {
-	while (size >= 0)
-	{
-		free(tab[size]);
-		size--;
-	}
-	free (tab);
-	return (0);
-}
+	char			**tab;
+	char			*next_str;
+	unsigned int	next_str_len;
+	unsigned int	nb_strs;
+	unsigned int	i;
 
-char	**ft_split(char const *s, char c)
-{
-	char	**tab;
-	int		words;
-	int		i;
-
-	i = 0;
 	if (!s)
 		return (NULL);
-	words = count_words(s, c, 0);
-	tab = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!tab)
-		return ((void *)0);
-	tab[words] = NULL;
-	while (i < words)
+	nb_strs = count_words(s, c);
+	if (!(tab = (char **)malloc(sizeof(char *) * (nb_strs + 1))))
+		return (NULL);
+	i = 0;
+	next_str = (char *)s;
+	next_str_len = 0;
+	while (i < nb_strs)
 	{
-		s = skip_letter((char *)s, c, 0);
-		tab[i] = (char *)malloc(sizeof(char) * count_words(s, c, 1));
-		if (!tab[i])
-			return (free_tab(tab, i));
-		copy_word(tab[i], s, c);
-		s = skip_letter((char *)s, c, 1);
+		ft_get_next_str(&next_str, &next_str_len, c);
+		tab[i] = (char *)malloc(sizeof(char) * (next_str_len + 1));
+			if (!tab[i])
+				return (free_split(tab));
+		ft_strlcpy(tab[i], next_str, next_str_len + 1);
 		i++;
 	}
+	tab[i] = NULL;
 	return (tab);
 }
+
+
+//////////////////// OLD SPLIT VERSION BELLOW ////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+
+// // selector == 1 -> skip normal letter (non delimitor)
+// static char	*skip_letter(char const *s1, char c, int selector)
+// {	
+// 	int	i;
+// 	int	flag;
+// 	int	len;
+
+// 	i = 0;
+// 	flag = 0;
+// 	while (s1[i] && !flag)
+// 	{
+// 		if (s1[i] != c && !selector)
+// 		{
+// 			len = i + 1;
+// 			flag = 1;
+// 		}
+// 		if (s1[i] == c && selector)
+// 		{
+// 			len = i + 1;
+// 			flag = 1;
+// 		}
+// 		i++;
+// 	}
+// 	if (!selector)
+// 		s1 += len - 1;
+// 	else
+// 		s1 += len;
+// 	return ((char *)s1);
+// }
+
+// //	selector == 1 -> count letter
+// static int	count_words(char const *s1, char c, int selector)
+// {
+// 	int	res;
+// 	int	i;
+
+// 	i = 0;
+// 	res = 0;
+// 	if (selector == 1)
+// 	{
+// 		while (s1[i] != c && s1[i])
+// 			i++;
+// 		return (i);
+// 	}
+// 	while (s1[i])
+// 	{
+// 		while (s1[i] != c && s1[i] != '\0' && !selector)
+// 		{
+// 			if (s1[i + 1] == c || s1[i + 1] == 0)
+// 			{
+// 				res++;
+// 				break ;
+// 			}
+// 			i++;
+// 		}
+// 		i++;
+// 	}
+// 	return (res);
+// }
+
+// static char	*copy_word(char *dst, char const *src, char c)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (src[i] && src[i] != c)
+// 	{
+// 		dst[i] = src[i];
+// 		i++;
+// 	}
+// 	dst[i] = 0;
+// 	return (dst);
+// }
+
+// static char	**free_tab(char **tab, int size)
+// {
+// 	while (size >= 0)
+// 	{
+// 		free(tab[size]);
+// 		size--;
+// 	}
+// 	free (tab);
+// 	return (0);
+// }
+
+// char	**ft_split(char const *s, char c)
+// {
+// 	char	**tab;
+// 	int		words;
+// 	int		i;
+
+// 	i = 0;
+// 	if (!s)
+// 		return (NULL);
+// 	words = count_words(s, c, 0);
+// 	tab = (char **)malloc(sizeof(char *) * (words + 1));
+// 	if (!tab)
+// 		return ((void *)0);
+// 	tab[words] = NULL;
+// 	while (i < words)
+// 	{
+// 		s = skip_letter((char *)s, c, 0);
+// 		tab[i] = (char *)malloc(sizeof(char) * count_words(s, c, 1));
+// 		if (!tab[i])
+// 			return (free_tab(tab, i));
+// 		copy_word(tab[i], s, c);
+// 		s = skip_letter((char *)s, c, 1);
+// 		i++;
+// 	}
+// 	return (tab);
+// }
 
 // int main()
 // {
