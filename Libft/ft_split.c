@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 10:23:25 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/21 11:13:05 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:30:42 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "libft.h"
 
-static char			**free_split(char **tab)
+static char	**free_split(char **tab)
 {
 	unsigned int	i;
 
@@ -55,10 +55,10 @@ static unsigned int	count_words(char const *s, char c)
 	return (nb_strs);
 }
 
-static void			ft_get_next_str(char **next_str, unsigned int *next_str_len,
+static void	ft_get_next_str(char **next_str, unsigned int *next_str_len,
 					char c)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	*next_str += *next_str_len;
 	*next_str_len = 0;
@@ -74,7 +74,7 @@ static void			ft_get_next_str(char **next_str, unsigned int *next_str_len,
 	}
 }
 
-char				**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char			**tab;
 	char			*next_str;
@@ -85,28 +85,26 @@ char				**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	nb_strs = count_words(s, c);
-	if (!(tab = (char **)malloc(sizeof(char *) * (nb_strs + 1))))
+	tab = (char **)malloc(sizeof(char *) * (nb_strs + 1));
+	if (!tab)
 		return (NULL);
-	i = 0;
+	i = -1;
 	next_str = (char *)s;
 	next_str_len = 0;
-	while (i < nb_strs)
+	while (++i < nb_strs)
 	{
 		ft_get_next_str(&next_str, &next_str_len, c);
 		tab[i] = (char *)malloc(sizeof(char) * (next_str_len + 1));
-			if (!tab[i])
-				return (free_split(tab));
+		if (!tab[i])
+			return (free_split(tab));
 		ft_strlcpy(tab[i], next_str, next_str_len + 1);
-		i++;
 	}
 	tab[i] = NULL;
 	return (tab);
 }
 
-
 //////////////////// OLD SPLIT VERSION BELLOW ////////////////////////
 //////////////////////////////////////////////////////////////////////
-
 
 // // selector == 1 -> skip normal letter (non delimitor)
 // static char	*skip_letter(char const *s1, char c, int selector)

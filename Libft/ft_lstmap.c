@@ -6,11 +6,24 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 11:33:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/21 11:17:31 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:31:26 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static char	*ft_strdup2(const char *s1)
+{
+	char	*ptr;
+	int		len;
+
+	len = ft_strlen((char *)s1);
+	ptr = (char *)malloc((len + 1 * sizeof(char)));
+	if (!ptr)
+		return (0);
+	ft_strlcpy(ptr, s1, len + 1);
+	return (ptr);
+}
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
@@ -24,7 +37,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst->next)
 	{
 		lst = lst->next;
-		new_lst->next = ft_lstnew(ft_strdup(f(lst->content)));
+		new_lst->next = ft_lstnew(ft_strdup2(f(lst->content)));
 		if (new_lst->next == NULL)
 		{
 			ft_lstclear(&begin_lst, del);
