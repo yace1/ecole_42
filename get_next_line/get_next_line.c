@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:43:19 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/24 13:04:18 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:38:46 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#define BUF_SIZE 5
+#define BUF_SIZE 3
 
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlen(const char *str);
@@ -34,27 +34,39 @@ size_t		ft_strlcpy(char *restrict dst, const char *restrict src, size_t n);
 char *get_next_line(int fd)
 {
 	static char	*str;
-	static char *temp;
+	char		*rest;
+	char		*temp;
 	char		buf[BUF_SIZE + 1];
 	int			i;
-	int			j;
 	int			ret;
 	
 	ret = 1;
-	str = ft_strdup(buf);
 	i = 0;
-	j = 0;
 	while (ret > 0)
 	{
 		ret = read(fd, buf, BUF_SIZE * sizeof(char));
+		if (ret == 0)
+			return(NULL);
 		buf[BUF_SIZE] = 0;
-		str = ft_strjoin(str, buf);
-		if (ft_strchr(str, (int)'\n'))
+		if (!str)
+			str = ft_strdup(buf);
+		else
+			str = ft_strjoin(str, buf);
+		// if (ft_strchr(buf, '\0'))
+		// {
+		// 	i = ft_strchr(str, '\0');
+		// 	temp = ft_substr(str, 0, i);
+		// 	return (temp);
+		// }
+		if (ft_strchr(str, '\n'))
 		{
 			i = ft_strchr(str, '\n');
-			str[i] = 'X';
-			printf("%s", str);
-			return (str);
+			//printf("ici mtn: %s pos:%d\n", str, i);
+			temp = ft_substr(str, 0, i);
+			rest = ft_substr(str, i + 1, ft_strlen(str) - i);
+			free(str);
+			str = ft_strdup(rest);
+			return (temp);
 		}
 	}
 	return (str);
@@ -70,12 +82,12 @@ int main()
 	fd = open("texte.txt", O_RDONLY);
 	if (fd == -1)
 		return (0);
-	// while(i < 6)
-	// {
+	while(i < 6)
+	{
 		s = get_next_line(fd);
-		printf("%s\n", s);
-	// 	i++;
-	// }
+		printf("string: %s index: %d\n", s, i);
+		i++;
+	}
 	fd = close(fd);
 	return (0);
 }
