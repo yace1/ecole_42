@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:43:19 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/25 17:38:46 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/26 12:15:23 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#define BUF_SIZE 3
 
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlen(const char *str);
@@ -36,7 +35,7 @@ char *get_next_line(int fd)
 	static char	*str;
 	char		*rest;
 	char		*temp;
-	char		buf[BUF_SIZE + 1];
+	char		buf[BUFFER_SIZE + 1];
 	int			i;
 	int			ret;
 	
@@ -44,20 +43,25 @@ char *get_next_line(int fd)
 	i = 0;
 	while (ret > 0)
 	{
-		ret = read(fd, buf, BUF_SIZE * sizeof(char));
-		if (ret == 0)
-			return(NULL);
-		buf[BUF_SIZE] = 0;
+		ret = read(fd, buf, BUFFER_SIZE * sizeof(char));
+		if (!ret)
+		{
+			while (ft_strchr(str, '\n'))
+			{
+				i = ft_strchr(str, '\n');
+				temp = ft_substr(str, 0, i);
+				rest = ft_substr(str, i + 1, ft_strlen(str) - i);
+				free(str);
+				str = ft_strdup(rest);
+				return (temp);
+			}
+			printf("str: %s buf: %s\n", str, buf);
+			return (ft_strdup(str));
+		}
 		if (!str)
 			str = ft_strdup(buf);
 		else
 			str = ft_strjoin(str, buf);
-		// if (ft_strchr(buf, '\0'))
-		// {
-		// 	i = ft_strchr(str, '\0');
-		// 	temp = ft_substr(str, 0, i);
-		// 	return (temp);
-		// }
 		if (ft_strchr(str, '\n'))
 		{
 			i = ft_strchr(str, '\n');
@@ -85,7 +89,7 @@ int main()
 	while(i < 6)
 	{
 		s = get_next_line(fd);
-		printf("string: %s index: %d\n", s, i);
+		printf("%d: %s \n", i, s);
 		i++;
 	}
 	fd = close(fd);
