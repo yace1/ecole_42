@@ -1,0 +1,6 @@
+Credentials cache: API:D8F106C6-2B12-4629-A206-A9D7B95DF146
+        Principal: ybentaye@42LAUSANNE.CH
+
+  Issued                Expires               Principal
+Jul  5 17:17:39 2021  Jul  6 03:17:39 2021  krbtgt/42LAUSANNE.CH@42LAUSANNE.CH
+Jul  5 17:17:40 2021  Jul  6 03:17:39 2021  HTTP/student-storage.42lausanne.ch@42LAUSANNE.CH
