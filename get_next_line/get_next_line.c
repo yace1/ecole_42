@@ -6,31 +6,13 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:43:19 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/26 12:15:23 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:01:10 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "get_next_line.h"
 
-
-char		*ft_strjoin(char const *s1, char const *s2);
-size_t		ft_strlen(const char *str);
-static char	*copy_join(char *str, char const *s2, int i);
-char		*ft_strdup(const char *s1);
-int			ft_strchr(const char *s, int c);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-size_t		ft_strlcpy(char *restrict dst, const char *restrict src, size_t n);
-
-
-// 1- doit get l'index du \n
-// 2- si il reste des lettre dans le buffer apres l'index les mettres dans temp avec substr
-
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*str;
 	char		*rest;
@@ -38,26 +20,14 @@ char *get_next_line(int fd)
 	char		buf[BUFFER_SIZE + 1];
 	int			i;
 	int			ret;
-	
-	ret = 1;
+
 	i = 0;
+	ret = 1;
+	rest = NULL;
 	while (ret > 0)
 	{
 		ret = read(fd, buf, BUFFER_SIZE * sizeof(char));
-		if (!ret)
-		{
-			while (ft_strchr(str, '\n'))
-			{
-				i = ft_strchr(str, '\n');
-				temp = ft_substr(str, 0, i);
-				rest = ft_substr(str, i + 1, ft_strlen(str) - i);
-				free(str);
-				str = ft_strdup(rest);
-				return (temp);
-			}
-			printf("str: %s buf: %s\n", str, buf);
-			return (ft_strdup(str));
-		}
+		buf[ret] = 0;
 		if (!str)
 			str = ft_strdup(buf);
 		else
@@ -65,36 +35,63 @@ char *get_next_line(int fd)
 		if (ft_strchr(str, '\n'))
 		{
 			i = ft_strchr(str, '\n');
-			//printf("ici mtn: %s pos:%d\n", str, i);
 			temp = ft_substr(str, 0, i);
 			rest = ft_substr(str, i + 1, ft_strlen(str) - i);
 			free(str);
-			str = ft_strdup(rest);
+			if (rest)
+				str = ft_strdup(rest);
+			if (temp[0] == 0)
+				return (NULL);
 			return (temp);
 		}
+		if (ret != BUFFER_SIZE && ret)
+		{
+			temp = ft_strdup(str);
+			free(str);
+			str = NULL;
+			if (temp[0] == 0)
+				return (NULL);
+			return (temp);
+		}
+		if (!ret)
+		{
+			if (str)
+			{
+				temp = ft_strdup(str);
+				free(str);
+				str = NULL;
+				if (temp[0] == 0)
+					return (NULL);
+				return (temp);
+			}
+			free(str);
+			return (NULL);
+		}
+		free(str);
 	}
-	return (str);
+	free(str);
+	return (NULL);
 }
 
-int main()
-{
-	int fd;
-	char	*s;
-	int	i;
+// int main()
+// {
+// 	int fd;
+// 	char	*s;
+// 	int	i;
 
-	i = 0;
-	fd = open("texte.txt", O_RDONLY);
-	if (fd == -1)
-		return (0);
-	while(i < 6)
-	{
-		s = get_next_line(fd);
-		printf("%d: %s \n", i, s);
-		i++;
-	}
-	fd = close(fd);
-	return (0);
-}
+// 	i = 0;
+// 	fd = open("texte.txt", O_RDONLY);
+// 	if (fd == -1)
+// 		return (0);
+// 	while(i < 8)
+// 	{
+// 		s = get_next_line(fd);
+// 		printf("%d: %s \n", i, s);
+// 		i++;
+// 	}
+// 	fd = close(fd);
+// 	return (0);
+// }
 
 size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t n)
 {
@@ -134,95 +131,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	ft_strlcpy(substr, s + start, len + 1);
 	return (substr);
-}
-
-int	ft_strchr(const char *s, int c)
-{
-	int		i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return (i);
-		i++;
-	}
-	if (s[i] == c)
-		return (i);
-	return (0);
-}
-
-
-char	*ft_strdup(const char *s1)
-{
-	char	*ptr;
-	int		len;
-	int		i;
-
-	len = ft_strlen((char *)s1);
-	i = 0;
-	ptr = (char *)malloc((len + 1 * sizeof(char)));
-	while (s1[i])
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	ptr[i] = 0;
-	if (!ptr)
-		return (0);
-	return (ptr);
-}
-
-
-size_t	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-static char	*copy_join(char *str, char const *s2, int i)
-{
-	int	j;
-
-	j = 0;
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*str;
-	int		len_s2;
-	int		len_s1;
-	int		i;
-	int		j;
-
-	if (!s1 || !s2)
-		return (NULL);
-	len_s1 = ft_strlen((char *)s1);
-	len_s2 = ft_strlen((char *)s2);
-	i = 0;
-	str = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
-	if (!str)
-		return (0);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	str = copy_join(str, s2, i);
-	return (str);
 }
