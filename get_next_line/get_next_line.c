@@ -6,21 +6,26 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:43:19 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/27 15:01:10 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/28 14:31:51 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+static char*	no_ret(char *str);
+static char*	ret_wrong_size(char *str);
+
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	*str = NULL;
 	char		*rest;
 	char		*temp;
 	char		buf[BUFFER_SIZE + 1];
 	int			i;
 	int			ret;
 
+	if (fd < 0)
+		return (NULL);
 	i = 0;
 	ret = 1;
 	rest = NULL;
@@ -35,38 +40,27 @@ char	*get_next_line(int fd)
 		if (ft_strchr(str, '\n'))
 		{
 			i = ft_strchr(str, '\n');
-			temp = ft_substr(str, 0, i);
+			temp = ft_substr(str, 0, i + 1);
 			rest = ft_substr(str, i + 1, ft_strlen(str) - i);
 			free(str);
 			if (rest)
 				str = ft_strdup(rest);
 			if (temp[0] == 0)
+			{
+				free(temp);
+				free(rest);
 				return (NULL);
+			}
+	
+			free(rest);
 			return (temp);
 		}
 		if (ret != BUFFER_SIZE && ret)
 		{
-			temp = ft_strdup(str);
-			free(str);
-			str = NULL;
-			if (temp[0] == 0)
-				return (NULL);
-			return (temp);
+			return (ret_wrong_size(str));
 		}
 		if (!ret)
-		{
-			if (str)
-			{
-				temp = ft_strdup(str);
-				free(str);
-				str = NULL;
-				if (temp[0] == 0)
-					return (NULL);
-				return (temp);
-			}
-			free(str);
-			return (NULL);
-		}
+			return (no_ret(str));
 		free(str);
 	}
 	free(str);
@@ -92,6 +86,43 @@ char	*get_next_line(int fd)
 // 	fd = close(fd);
 // 	return (0);
 // }
+
+static char*	no_ret(char *str)
+{
+	char *temp;
+
+	temp = NULL;
+	if (str)
+	{
+		temp = ft_strdup(str);
+		free(str);
+		str = NULL;
+	if (temp[0] == 0)
+	{
+		free(temp);
+		return (NULL);
+	}
+		free(str);
+		return (temp);
+	}
+	free(str);
+	return (NULL);
+}
+
+static char*	ret_wrong_size(char *str)
+{
+	char *temp;
+
+	temp = ft_strdup(str);
+	free(str);
+	str = NULL;
+	if (temp[0] == 0)
+	{
+		free(temp);
+		return (NULL);
+	}
+	return (temp);
+}
 
 size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t n)
 {

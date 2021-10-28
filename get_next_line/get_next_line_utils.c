@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:14:08 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/27 15:04:41 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/28 14:29:23 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,27 @@ int	ft_strchr(const char *s, int c)
 	if (s[i] == c)
 		return (i);
 	return (0);
+}
+
+char	*get_new_ln(char *str, char *rest)
+{
+	int	i;
+	char	*temp;
+
+	i = ft_strchr(str, '\n');
+	temp = ft_substr(str, 0, i + 1);
+	rest = ft_substr(str, i + 1, ft_strlen(str) - i);
+	free(str);
+	if (rest)
+		str = ft_strdup(rest);
+	if (temp[0] == 0)
+	{
+		free(temp);
+		free(rest);
+		return (NULL);
+	}
+	free(rest);
+	return (temp);
 }
 
 
@@ -49,7 +70,7 @@ char	*ft_strdup(const char *s1)
 		free(ptr);
 		return (0);
 	}
-	//free((char *)s1);
+	//free (s1);
 	return (ptr);
 }
 
@@ -96,7 +117,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	str = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (!str)
+	{
+		free(str);
 		return (0);
+	}
 	while (s1[i])
 	{
 		str[i] = s1[i];
