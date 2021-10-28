@@ -37,7 +37,7 @@ char	*get_next_line(int fd)
 			str = ft_strdup(buf);
 		else
 			str = ft_strjoin(str, buf);
-		if (ft_strchr(str, '\n'))
+		if (ft_strchr(str, '\n') || str[0] == '\n')
 		{
 			i = ft_strchr(str, '\n');
 			temp = ft_substr(str, 0, i + 1);
@@ -51,7 +51,7 @@ char	*get_next_line(int fd)
 				free(rest);
 				return (NULL);
 			}
-	
+			free(str);
 			free(rest);
 			return (temp);
 		}
@@ -67,25 +67,25 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-// int main()
-// {
-// 	int fd;
-// 	char	*s;
-// 	int	i;
+int main()
+{
+	int fd;
+	char	*s;
+	int	i;
 
-// 	i = 0;
-// 	fd = open("texte.txt", O_RDONLY);
-// 	if (fd == -1)
-// 		return (0);
-// 	while(i < 8)
-// 	{
-// 		s = get_next_line(fd);
-// 		printf("%d: %s \n", i, s);
-// 		i++;
-// 	}
-// 	fd = close(fd);
-// 	return (0);
-// }
+	i = 0;
+	fd = open("texte.txt", O_RDONLY);
+	if (fd == -1)
+		return (0);
+	while(i < 8)
+	{
+		s = get_next_line(fd);
+		printf("%d: %s \n", i, s);
+		i++;
+	}
+	fd = close(fd);
+	return (0);
+}
 
 static char*	no_ret(char *str)
 {
@@ -97,12 +97,11 @@ static char*	no_ret(char *str)
 		temp = ft_strdup(str);
 		free(str);
 		str = NULL;
-	if (temp[0] == 0)
-	{
-		free(temp);
-		return (NULL);
-	}
-		free(str);
+		if (temp[0] == 0)
+		{
+			free(temp);
+			return (NULL);
+		}
 		return (temp);
 	}
 	free(str);
