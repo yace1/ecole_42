@@ -12,116 +12,89 @@
 
 #include "get_next_line.h"
 
-static char*	no_ret(char *str);
-static char*	ret_wrong_size(char *str);
+///////////////////////////NEW VERSION////////////////////////
+
+void	free_str(char **str)
+{
+	free(*str);
+	*str = NULL;
+}
+
+static char	*return_line(char **str, int ret)
+{
+	char	*s;
+	char	*temp;
+	int		i;
+
+	i = 0;
+	s = NULL;
+	if (ret < 0 || (!ret && (!str || !*str)))
+		return (NULL);
+	while ((*str)[i] != '\n' && (*str)[i])
+		i++;
+	if ((*str)[i] == '\n')
+	{
+		s = ft_substr(*str, 0, i + 1);
+		temp = ft_strdup(*str + i + 1);
+		free(*str);
+		*str = temp;
+		if (!**str)
+			free_str(str);
+		return (s);
+	}
+	s = ft_strdup(*str);
+	free_str(str);
+	return (s);
+}
 
 char	*get_next_line(int fd)
 {
 	static char	*str = NULL;
-	char		*rest;
 	char		*temp;
-	char		buf[BUFFER_SIZE + 1];
-	int			i;
+	char		*buf;
 	int			ret;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	i = 0;
-	ret = 1;
-	rest = NULL;
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
+		return (NULL);
+	ret = read(fd, buf, BUFFER_SIZE);
 	while (ret > 0)
 	{
-		ret = read(fd, buf, BUFFER_SIZE * sizeof(char));
-		buf[ret] = 0;
+		buf[ret] = '\0';
 		if (!str)
-			str = ft_strdup(buf);
-		else
-			str = ft_strjoin(str, buf);
-		if (ft_strchr(str, '\n') || str[0] == '\n')
-		{
-			i = ft_strchr(str, '\n');
-			temp = ft_substr(str, 0, i + 1);
-			rest = ft_substr(str, i + 1, ft_strlen(str) - i);
-			free(str);
-			if (rest)
-				str = ft_strdup(rest);
-			if (temp[0] == 0)
-			{
-				free(temp);
-				free(rest);
-				return (NULL);
-			}
-			free(str);
-			free(rest);
-			return (temp);
-		}
-		if (ret != BUFFER_SIZE && ret)
-		{
-			return (ret_wrong_size(str));
-		}
-		if (!ret)
-			return (no_ret(str));
+			str = ft_strdup("");
+		temp = ft_strjoin(str, buf);
 		free(str);
+		str = temp;
+		if (ft_strchr(buf, '\n'))
+			break ;
+		ret = read(fd, buf, BUFFER_SIZE);
 	}
-	free(str);
-	return (NULL);
+	free(buf);
+	return (return_line(&str, ret));
 }
 
-int main()
-{
-	int fd;
-	char	*s;
-	int	i;
+// int main()
+// {
+// 	int fd;
+// 	char	*s;
+// 	int	i;
 
-	i = 0;
-	fd = open("texte.txt", O_RDONLY);
-	if (fd == -1)
-		return (0);
-	while(i < 8)
-	{
-		s = get_next_line(fd);
-		printf("%d: %s \n", i, s);
-		i++;
-	}
-	fd = close(fd);
-	return (0);
-}
-
-static char*	no_ret(char *str)
-{
-	char *temp;
-
-	temp = NULL;
-	if (str)
-	{
-		temp = ft_strdup(str);
-		free(str);
-		str = NULL;
-		if (temp[0] == 0)
-		{
-			free(temp);
-			return (NULL);
-		}
-		return (temp);
-	}
-	free(str);
-	return (NULL);
-}
-
-static char*	ret_wrong_size(char *str)
-{
-	char *temp;
-
-	temp = ft_strdup(str);
-	free(str);
-	str = NULL;
-	if (temp[0] == 0)
-	{
-		free(temp);
-		return (NULL);
-	}
-	return (temp);
-}
+// 	i = 0;
+// 	fd = open("texte.txt", O_RDONLY);
+// 	if (fd == -1)
+// 		return (0);
+// 	while(i < 8)
+// 	{
+// 		s = get_next_line(fd);
+// 		printf("%d: %s \n", i, s);
+// 		i++;
+// 	}
+// 	fd = close(fd);
+// 	return (0);
+// }
 
 size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t n)
 {

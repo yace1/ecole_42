@@ -28,28 +28,6 @@ int	ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*get_new_ln(char *str, char *rest)
-{
-	int	i;
-	char	*temp;
-
-	i = ft_strchr(str, '\n');
-	temp = ft_substr(str, 0, i + 1);
-	rest = ft_substr(str, i + 1, ft_strlen(str) - i);
-	free(str);
-	if (rest)
-		str = ft_strdup(rest);
-	if (temp[0] == 0)
-	{
-		free(temp);
-		free(rest);
-		return (NULL);
-	}
-	free(rest);
-	return (temp);
-}
-
-
 char	*ft_strdup(const char *s1)
 {
 	char	*ptr;
@@ -70,10 +48,8 @@ char	*ft_strdup(const char *s1)
 		free(ptr);
 		return (0);
 	}
-	//free (s1);
 	return (ptr);
 }
-
 
 size_t	ft_strlen(const char *str)
 {
