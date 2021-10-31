@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:14:08 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/28 14:29:23 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/29 13:06:52 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ char	*ft_strdup(const char *s1)
 		free(ptr);
 		return (0);
 	}
-	//free (s1);
 	return (ptr);
 }
 
@@ -102,7 +101,7 @@ static char	*copy_join(char *str, char const *s2, int i)
 	return (str);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		len_s2;
@@ -128,5 +127,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	j = 0;
 	str = copy_join(str, s2, i);
+	free(s1);
 	return (str);
 }

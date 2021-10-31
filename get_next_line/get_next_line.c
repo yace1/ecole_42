@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:43:19 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/28 14:31:51 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/29 13:07:35 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ char	*get_next_line(int fd)
 		if (!str)
 			str = ft_strdup(buf);
 		else
+		{	str = ft_strdup(str);
 			str = ft_strjoin(str, buf);
-		if (ft_strchr(str, '\n') || str[0] == '\n')
+		}
+		if (ft_strchr(str, '\n'))
 		{
 			i = ft_strchr(str, '\n');
 			temp = ft_substr(str, 0, i + 1);
@@ -49,6 +51,7 @@ char	*get_next_line(int fd)
 			{
 				free(temp);
 				free(rest);
+				free(str);
 				return (NULL);
 			}
 			free(str);
@@ -67,25 +70,25 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-int main()
-{
-	int fd;
-	char	*s;
-	int	i;
+// int main()
+// {
+// 	int fd;
+// 	char	*s;
+// 	int	i;
 
-	i = 0;
-	fd = open("texte.txt", O_RDONLY);
-	if (fd == -1)
-		return (0);
-	while(i < 8)
-	{
-		s = get_next_line(fd);
-		printf("%d: %s \n", i, s);
-		i++;
-	}
-	fd = close(fd);
-	return (0);
-}
+// 	i = 0;
+// 	fd = open("texte.txt", O_RDONLY);
+// 	if (fd == -1)
+// 		return (0);
+// 	while(i < 8)
+// 	{
+// 		s = get_next_line(fd);
+// 		printf("%d: %s \n", i, s);
+// 		i++;
+// 	}
+// 	fd = close(fd);
+// 	return (0);
+// }
 
 static char*	no_ret(char *str)
 {
@@ -97,11 +100,12 @@ static char*	no_ret(char *str)
 		temp = ft_strdup(str);
 		free(str);
 		str = NULL;
-		if (temp[0] == 0)
-		{
-			free(temp);
-			return (NULL);
-		}
+	if (temp[0] == 0)
+	{
+		free(temp);
+		return (NULL);
+	}
+		free(str);
 		return (temp);
 	}
 	free(str);

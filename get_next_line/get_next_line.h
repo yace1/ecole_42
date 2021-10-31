@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:14:21 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/28 14:29:48 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/29 13:02:35 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);
-char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin(char *s1, char *s2);
 size_t		ft_strlen(const char *str);
 char		*ft_strdup(const char *s1);
 int			ft_strchr(const char *s, int c);
