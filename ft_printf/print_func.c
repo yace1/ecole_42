@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 00:06:21 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/11/01 00:15:25 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/11/01 12:19:27 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd(n + '0', fd);
 }
 
-void	ft_deca_hexa(int dec)
+void	ft_deca_hexa(unsigned int dec)
 {
 	int		i;
 	char	hexa[10];
@@ -74,6 +74,32 @@ void	ft_deca_hexa(int dec)
 	}
 }
 
+void	ft_deca_hexa_min(unsigned int dec)
+{
+	int		i;
+	char	hexa[100];
+	int		rem;
+
+	dec = (unsigned int) dec;
+	i = 0;
+	rem = 0;
+	//dec = check_neg_hexa(dec);
+	while (dec > 0)
+	{
+		rem = dec % 16;
+		if (rem < 10)
+			hexa[i++] = '0' + rem;
+		else
+			hexa[i++] = 'a' + (rem - 10);
+		dec = dec / 16;
+	}
+	while (i >= 0)
+	{
+		ft_putchar_fd(hexa[i], 1);
+		i--;
+	}
+}
+
 int	check_neg_hexa(int n)
 {
 	if (n == 0)
@@ -81,7 +107,6 @@ int	check_neg_hexa(int n)
 	if (n < 0)
 	{
 		n *= -1;
-		ft_putchar_fd('-', 1);
 	}
 	return (n);
 }
