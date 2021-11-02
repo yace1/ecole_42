@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 11:58:40 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/11/01 12:21:31 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/11/02 12:42:03 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,56 +42,69 @@ char	detect_arg(const char *str, int i)
 }
 
 //return the index to skip the arg and print the value of the arg
-void	return_arg(char c, va_list	lst_arg)
+int	return_arg(char c, va_list	lst_arg)
 {
+	int	i;
+
+	i = 0;
 	if (c == 'c')
-		ft_putchar_fd(va_arg(lst_arg, int), 1);
+		i = ft_putchar_fd(va_arg(lst_arg, int), 1);
 	else if (c == 's')
-		ft_putstr_fd(va_arg(lst_arg, char *), 1);
-	if (c == 'i')
-		ft_putnbr_fd(va_arg(lst_arg, int), 1);
+		i = ft_putstr_fd(va_arg(lst_arg, char *), 1);
+	else if (c == 'i')
+		i = ft_putnbr_fd(va_arg(lst_arg, int), 1);
 	else if (c == 'd')
-		ft_putnbr_fd(va_arg(lst_arg, int), 1);
+		i = ft_putnbr_fd(va_arg(lst_arg, int), 1);
 	else if (c == 'x')
-		ft_deca_hexa_min(va_arg(lst_arg, unsigned int));
+		i = ft_deca_hexa_min(va_arg(lst_arg, unsigned long));
 	else if (c == 'X')
-		ft_deca_hexa(va_arg(lst_arg, unsigned int));
+		i = ft_deca_hexa(va_arg(lst_arg, unsigned long));
 	else if (c == 'p')
-		ft_deca_hexa((int)va_arg(lst_arg, unsigned int));
+		i = ptr_hexa((unsigned long)va_arg(lst_arg, unsigned long));
 	else if (c == '%')
-		ft_putchar_fd('%', 1);
+		i = ft_putchar_fd('%', 1);
+	return (i);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	lst_arg;
 	int		i;
+	int		j;
 
 	i = 0;
 	va_start(lst_arg, str);
+	j = 0;
 	while (str[i])
 	{
-		if (detect_arg(str, i))
+		while (detect_arg(str, i))
 		{
-			return_arg(detect_arg(str, i), lst_arg);
-			if (!str[i + 2])
-				break ;
+			j += return_arg(detect_arg(str, i), lst_arg);
 			i += 2;
+			if (!str[i])
+				break ;
 		}
-		write(1, &str[i], 1);
+		if (str[i])
+			write(1, &str[i], 1);
+		else
+			break ;
 		i++;
+		j++;
 	}
 	va_end(lst_arg);
-	return (i);
+	return (j);
 }
 
 // int	main()
 // {
-// 	int i;
+// 	int i, j;
 // 	int	*ptr;
 
 // 	ptr = &i;
-// 	i = ft_printf("dddd%c  %s   %i et %p", 'Z', " Hello ", -10, ptr);
-// 	i = printf("\ndddd%c  %s   %i et %p", 'Z', " Hello ", -10, ptr);
+// 	j = 1;
+// 	j = printf(" %p ", ptr);
+// 	printf("|--result vrai: %d\n", j);
+// 	i = ft_printf(" %p ", ptr);
+// 	printf("|--result copy: %d\n\n", i);
 // 	return (0);
 // }
