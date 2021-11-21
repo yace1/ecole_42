@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 00:06:21 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/11/03 15:52:45 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/11/08 11:15:37 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_putuint(unsigned int n, int fd)
 int	ft_deca_hexa(unsigned long dec)
 {
 	int		i;
-	int		hexa[10];
+	int		hexa[100];
 	int		rem;
 
 	i = 0;
@@ -82,39 +82,33 @@ int	ft_deca_hexa(unsigned long dec)
 	return (dec);
 }
 
-int	ft_deca_hexa_min(unsigned long dec)
+void	ft_deca_hexa_min(unsigned long dec, int *i)
 {
-	int		i;
-	int		hexa[10];
-	int		rem;
-
-	i = 0;
-	rem = 0;
-	if (!dec)
-		return (ft_putchar_fd('0', 1));
-	while (dec > 0)
+	if (dec >= 16)
 	{
-		rem = dec % 16;
-		if (rem < 10)
-			hexa[i++] = '0' + rem;
-		else
-			hexa[i++] = 'a' + (rem - 10);
-		dec = dec / 16;
+		ft_deca_hexa_min(dec / 16, i);
+		ft_deca_hexa_min(dec % 16, i);
 	}
-	i--;
-	while (i >= 0)
+	else
 	{
-		dec += ft_putchar_fd(hexa[i], 1);
-		i--;
+		if (dec < 10)
+		{
+			dec += '0';
+			*i += ft_putchar_fd(dec, 1);
+		}
+		else if (dec < 16)
+		{
+			dec += 'W';
+			*i += ft_putchar_fd(dec, 1);
+		}
 	}
-	return (dec);
 }
 
 int	ptr_hexa(unsigned long dec)
 {
 	int	i;
 	int	rem;
-	int	hexa[10];
+	int	hexa[100];
 
 	i = 0;
 	ft_putstr_fd("0x", 1);

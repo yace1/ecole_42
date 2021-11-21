@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 11:58:40 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/11/03 15:48:29 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/11/08 11:18:55 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	return_arg(char c, va_list	lst_arg)
 	else if (c == 'u')
 		i = ft_putuint(va_arg(lst_arg, unsigned int), 1);
 	else if (c == 'x')
-		i = ft_deca_hexa_min(va_arg(lst_arg, unsigned long));
+		ft_deca_hexa_min(va_arg(lst_arg, unsigned int), &i);
 	else if (c == 'X')
-		i = ft_deca_hexa(va_arg(lst_arg, unsigned long));
+		i = ft_deca_hexa(va_arg(lst_arg, unsigned int));
 	else if (c == 'p')
-		i = ptr_hexa((unsigned long)va_arg(lst_arg, unsigned long));
+		i = ptr_hexa((unsigned long)va_arg(lst_arg, void *));
 	else if (c == '%')
 		i = ft_putchar_fd('%', 1);
 	return (i);
@@ -78,18 +78,15 @@ int	ft_printf(const char *str, ...)
 	return (j);
 }
 
-int	main()
-{
-	int i, j;
-	int	*ptr;
-	ptr = &i;
-	j = printf("%%%c%%%s%%%d%%%i%%%u%%%x %%%X%%%%", 'A', "42", 42, 42 ,42 , 1, 42);
-	printf("|--result vrai: %d\n\n", j);
-	i = ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x %%%X%%%%", 'A', "42", 42, 42 ,42 , 1, 42);
-	printf("|--result copy: %d\n\n", i);
-	// j = printf(" %X ",42);
-	// printf("|--result vrai: %d\n\n", j);
-	// i = ft_printf(" %X ",42);
-	// printf("|--result copy: %d\n\n", i);
-	return (0);
-}
+// int	main()
+// {
+// 	int i, j;
+// 	int	*ptr;
+// 	ptr = &i;
+// 	// printf("|--result vrai: %d\n\n", j);// 
+// 	j = printf(" %x%x%x%x%x%x%x%x ",42,42,42,42,42,42,42,42);
+// 	printf("|--result vrai: %d\n\n", j);
+// 	i = ft_printf(" %x%x%x%x%x%x%x%x ",42,42,42,42,42,42,42,42, 42);
+// 	printf("|--result copy: %d\n\n", i);
+// 	return (0);
+// }
