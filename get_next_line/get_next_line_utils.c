@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:14:08 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/29 13:06:52 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/10/28 14:29:23 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,6 @@ int	ft_strchr(const char *s, int c)
 		return (i);
 	return (0);
 }
-
-char	*get_new_ln(char *str, char *rest)
-{
-	int	i;
-	char	*temp;
-
-	i = ft_strchr(str, '\n');
-	temp = ft_substr(str, 0, i + 1);
-	rest = ft_substr(str, i + 1, ft_strlen(str) - i);
-	free(str);
-	if (rest)
-		str = ft_strdup(rest);
-	if (temp[0] == 0)
-	{
-		free(temp);
-		free(rest);
-		return (NULL);
-	}
-	free(rest);
-	return (temp);
-}
-
 
 char	*ft_strdup(const char *s1)
 {
@@ -72,7 +50,6 @@ char	*ft_strdup(const char *s1)
 	}
 	return (ptr);
 }
-
 
 size_t	ft_strlen(const char *str)
 {
@@ -101,7 +78,7 @@ static char	*copy_join(char *str, char const *s2, int i)
 	return (str);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 	int		len_s2;
@@ -127,6 +104,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	j = 0;
 	str = copy_join(str, s2, i);
-	free(s1);
 	return (str);
 }
