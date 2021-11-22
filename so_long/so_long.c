@@ -1,4 +1,3 @@
-#include "mlx.h"
 #include "so_long.h"
 
 int	deal_key(int key, void *param)
@@ -10,24 +9,20 @@ int	deal_key(int key, void *param)
 
 int	main()
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img;
-	char	*relative_path;
-	int		img_width = 10;
-	int		img_height = 10;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	char		*relative_path;
+	size_map	map;
+	int			fd; 
 
-	relative_path = "sand.xpm";
+	relative_path = "images/sand.xpm";
 	mlx_ptr = mlx_init();
-	write (1, "tata\n", 5);
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "so long");
-	write (1, "titi\n", 5);
-	img = mlx_xpm_file_to_image(mlx_ptr, relative_path, &img_width, &img_height);
-	write (1, "toto\n", 5);
-
-	mlx_put_image_to_window(mlx_ptr, win_ptr, img, 0, 0);
-	write (1, "tutu\n", 5);
-	mlx_pixel_put(mlx_ptr, win_ptr, 200, 200, 0xFFFFFF);
+	fd = open("map.ber", O_RDONLY);
+	if (fd == -1)
+		return (0);
+	map = check_map(fd);
+	win_ptr = mlx_new_window(mlx_ptr, map.width, map.width, "so long");
+	bg_map(map.width, map.height, mlx_ptr, win_ptr);
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
 	mlx_loop(mlx_ptr);
 	return (0);

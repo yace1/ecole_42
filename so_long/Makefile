@@ -1,7 +1,8 @@
-SRCS= so_long.c
+SRCS= so_long.c so_long_func.c
 
 INCS= fract_ol.h
 OBJS= ${SRCS:.c=.o}
+OTHER= get_next_line/*.c
 
 MAKEMLX=	${MAKE} -C ./mlx
 
@@ -16,7 +17,7 @@ all: 		$(NAME)
 
 $(NAME): 	$(OBJS)
 			${MAKEMLX}
-			gcc ${CFLAGS} -I./ -Lmlx -lmlx -framework OpenGL -framework AppKit $(OBJS) -o $(NAME)
+			gcc ${CFLAGS} -I./ -Lmlx -lmlx -framework OpenGL -framework AppKit $(OBJS) $(OTHER) -o $(NAME)
 
 bonus:		${NAME}
 
