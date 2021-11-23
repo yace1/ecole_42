@@ -15,7 +15,7 @@ void 		bg_map(int width, int height, void *mlx_ptr, void *win_ptr);
 size_t		ft_strlen2(const char *str);
 int			ft_strrchr(const char *s, int c);
 void		put_element(size_map map, void *win_ptr, void *mlx_ptr);
-int			ft_strchr2(const char *s, int c);
+int			ft_strchr2(const char *s, int c, int start);
 char		**ft_split(char const *s, char c);
 
 #endif
