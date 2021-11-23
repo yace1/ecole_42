@@ -29,11 +29,11 @@ size_map check_map(int fd)
 		s = ft_strjoin(s, temp);
 		free(temp);
 		printf("%s", s);
-		map.width = ft_strlen2(s);
 		i++;
 	}
 	map.height = i;
 	map.data = ft_split(s, '\n');
+	map.width = ft_strlen2(map.data[0]);
 	return(map);
 }
 
@@ -64,13 +64,15 @@ void put_element(size_map map, void *win_ptr, void *mlx_ptr)
 {
 	int		i;
 	void	*img;
+	int		tail_size;
 
 	i = 0;
-
-	printf("ça commence: \n");
-	img = mlx_xpm_file_to_image(mlx_ptr, "images/hero.xpm", &i, &i);
+	tail_size = 86;
+	printf("ça commence: %d \n", map.height);
+	img = mlx_xpm_file_to_image(mlx_ptr, "images/player.xpm", &tail_size, &tail_size);
 	while (i < map.height)
 	{
+		printf("hello\n");
 		//printf("ligne: %d, colonne: %d\n", i, ft_strchr2(map.data[i], 'C'));
 		if (ft_strchr2(map.data[i], 'C'))
 			mlx_put_image_to_window(mlx_ptr, win_ptr, img, ft_strchr2(map.data[i], 'C') * 86, i * 86);

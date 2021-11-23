@@ -19,6 +19,7 @@ int	main()
 	if (fd == -1)
 		return (0);
 	map = check_map(fd);
+	printf("longueur: %d", map.width);
 	win_ptr = mlx_new_window(mlx_ptr, map.width * 86, map.height * 86, "so long");
 	printf("size: %d, %d\n", map.width, map.height);
 	bg_map(map.width, map.height, mlx_ptr, win_ptr);
