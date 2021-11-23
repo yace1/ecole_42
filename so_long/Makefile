@@ -4,7 +4,7 @@ INCS= fract_ol.h
 OBJS= ${SRCS:.c=.o}
 OTHER= get_next_line/*.c
 
-MAKEMLX=	${MAKE} -C ./mlx
+MAKEMLX=	make -C ./mlx
 
 CFLAGS= -Wall -Wextra -Werror
 NAME= so_long
