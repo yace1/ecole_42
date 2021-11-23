@@ -70,7 +70,7 @@ void put_element(size_map map, void *win_ptr, void *mlx_ptr)
 	i = 0;
 	tail_size = 86;
 	printf("ça commence: %d \n", map.height);
-	while (i < map.height)
+	while (i < map.height) 
 	{
 		img = mlx_xpm_file_to_image(mlx_ptr, "images/player.xpm", &tail_size, &tail_size);
 		start = 0;

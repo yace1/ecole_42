@@ -35,5 +35,11 @@ re:			fclean $(NAME)
 out:
 			gcc $(CFLAGS) $(SRCS)
 
+run:
+			./$(NAME)
+
+exe:
+			$(ALL) $(RUN)
+
 .PHONY:		all bonus clean fclean re
 		
