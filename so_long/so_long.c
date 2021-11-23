@@ -22,16 +22,9 @@ int	main()
 	win_ptr = mlx_new_window(mlx_ptr, map.width * 86, map.height * 86, "so long");
 	printf("size: %d, %d\n", map.width, map.height);
 	bg_map(map.width, map.height, mlx_ptr, win_ptr);
-	put_element(mlx_ptr, win_ptr, fd);
+	put_element(map, win_ptr, mlx_ptr);
 	// mlx_key_hook(win_ptr, deal_key, (void *)0);
 	mlx_loop(mlx_ptr);
 	return (0);
-
-	// void	*mlx;
-	// void	*mlx_win;
-
-	// mlx = mlx_init();
-	// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	// mlx_loop(mlx);
 
 }

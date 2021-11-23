@@ -1,4 +1,4 @@
-SRCS= so_long.c so_long_func.c
+SRCS= so_long.c so_long_func.c ft_split.c
 
 INCS= fract_ol.h
 OBJS= ${SRCS:.c=.o}

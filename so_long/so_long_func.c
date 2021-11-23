@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen2(const char *str)
 {
 	int	i;
 
@@ -17,18 +17,23 @@ size_map check_map(int fd)
 	size_map	map;
 	int			i;
 	char		*s;
+	char		*temp;
 
 	i = 0;
+	s = ft_strdup("");
 	while (i < 1000)
 	{
-		s = get_next_line(fd);
-		if (s == NULL)
+		temp = get_next_line(fd);
+		if (temp == NULL)
 			break ;
+		s = ft_strjoin(s, temp);
+		free(temp);
 		printf("%s", s);
-		map.width = ft_strlen(s);
+		map.width = ft_strlen2(s);
 		i++;
 	}
 	map.height = i;
+	map.data = ft_split(s, '\n');
 	return(map);
 }
 
@@ -55,29 +60,20 @@ void bg_map(int width, int height, void *mlx_ptr, void *win_ptr)
 	}
 }
 
-void put_element(void *mlx_ptr, void *win_ptr, int fd)
+void put_element(size_map map, void *win_ptr, void *mlx_ptr)
 {
-	char		*s;
-	int			i;
-	void		*img;
+	int		i;
+	void	*img;
 
 	i = 0;
-	fd = open("map.ber", O_RDONLY);
-	while (i < 1000)
+
+	printf("ça commence: \n");
+	img = mlx_xpm_file_to_image(mlx_ptr, "images/hero.xpm", &i, &i);
+	while (i < map.height)
 	{
-		printf("ici poto\n");
-		s = get_next_line(fd);
-		printf("%d\n", ft_strchr2(s, '0'));
-		if (s == NULL)
-			break ;
-		if (ft_strchr2(s, 'C'))
-		{
-			printf("Heloooo\n");
-			img = mlx_xpm_file_to_image(mlx_ptr, "images/hero.xpm", &i, &i);
-			printf("x: %d\n", ft_strchr2(s, 'C') * 86);
-			printf("y: %d\n",  i * 86);
-			mlx_put_image_to_window(mlx_ptr, win_ptr, img, i * 86, ft_strchr2(s, 'C') * 86);
-		}
+		//printf("ligne: %d, colonne: %d\n", i, ft_strchr2(map.data[i], 'C'));
+		if (ft_strchr2(map.data[i], 'C'))
+			mlx_put_image_to_window(mlx_ptr, win_ptr, img, ft_strchr2(map.data[i], 'C') * 86, i * 86);
 		i++;
 	}
 }
