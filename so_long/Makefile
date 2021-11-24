@@ -1,4 +1,4 @@
-SRCS= so_long.c so_long_func.c ft_split.c
+SRCS= so_long.c ft_split.c so_long_func.c general_ft.c
 
 INCS= fract_ol.h
 OBJS= ${SRCS:.c=.o}
@@ -19,8 +19,6 @@ $(NAME): 	$(OBJS)
 			${MAKEMLX}
 			gcc ${CFLAGS} -I./ -Lmlx -lmlx -framework OpenGL -framework AppKit $(OBJS) $(OTHER) -o $(NAME)
 
-bonus:		${NAME}
-
 clean:
 			@echo Cleaning out thos old .o
 			${MAKEMLX} clean
@@ -39,7 +37,7 @@ run:
 			./$(NAME)
 
 exe:
-			$(ALL) $(RUN)
+			$(RE) $(RUN)
 
-.PHONY:		all bonus clean fclean re
+.PHONY:		all bonus clean fclean re exe out 
 		
