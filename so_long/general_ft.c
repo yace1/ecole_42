@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_ft.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:24:35 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/11/24 13:25:22 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/11/25 12:51:27 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -1,4 +1,4 @@
-SRCS= so_long.c ft_split.c so_long_func.c general_ft.c
+SRCS= so_long.c ft_split.c so_long_func.c general_ft.c player_movement.c
 
 INCS= fract_ol.h
 OBJS= ${SRCS:.c=.o}

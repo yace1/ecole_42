@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/25 12:35:21 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/11/25 12:35:41 by ybentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static char	**free_split(char **tab)
@@ -59,7 +71,6 @@ static void	ft_get_next_str(char **next_str, unsigned int *next_str_len,
 		i++;
 	}
 }
-
 
 char	**ft_split(char const *s, char c)
 {

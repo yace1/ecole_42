@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/25 12:34:46 by ybentaye          #+#    #+#             */
+/*   Updated: 2021/11/25 13:16:13 by ybentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
  #define SO_LONG_H
 #include <unistd.h>
@@ -11,6 +23,8 @@ typedef struct	info {
 	void 	*img_player;
 	void	*img_sand;
 	void	*img_palm;
+	void	*img_coll;
+	void	*img_cprtl;
 }				window_info;
 
 typedef struct	m_map {
@@ -18,6 +32,7 @@ typedef struct	m_map {
 	int			height;
 	int			p_y;
 	int			p_x;
+	int			nb_key;
 	char		**data;
 	window_info	*info;
 }				size_map;
@@ -35,5 +50,6 @@ int			ft_strrchr(const char *s, int c);
 void		put_element(size_map *map, window_info info);
 int			ft_strchr2(const char *s, int c, int start);
 char		**ft_split(char const *s, char c);
+int			deal_key(int key, void *param);
 
 #endif
