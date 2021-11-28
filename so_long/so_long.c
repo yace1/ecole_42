@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:12:32 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/11/27 19:41:53 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/11/28 01:44:30 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static t_window	fill_info(void *mlx_ptr, void *win_ptr
 
 //error a fix: 	
 //				-quitter x pressée
-//				-free a chaque exit avec map.data full
 int	main(void)
 {
 	void		*mlx_ptr;
