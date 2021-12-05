@@ -1,6 +1,10 @@
-SRCS= client.c server.c
+SERV_SRCS= server.c
 
-OBJS= ${SRCS:.c=.o}
+CLIENT_SRCS= client.c
+
+SERV_OBJS= ${SERV_SRCS:.c=.o}
+
+CLIENT_OBJS= ${CLIENT_SRCS:.c=.o}
 
 LIBFT_A = libft.a
 
@@ -21,18 +25,26 @@ MAKEPRINTF = make -C ./printf
 MAKELIBFT=	make -C ./libft
 
 CFLAGS= -Wall -Wextra -Werror
-NAME = minitalk
 
-all: 		$(NAME)
+NAME_CLIENT = minitalk_client
+
+NAME_SERVE = minitalk_serve
+
+all: 		$(NAME_SERVE)
 
 .c.o:
 			@echo Compiling $<
 			gcc $(CFLAGS) -Imlx -c $< -o ${<:.c=.o}
 
-$(NAME): 	$(OBJS)
+$(NAME_SERVE): 	$(SERV_OBJS)
+				${MAKELIBFT}
+				${MAKEPRINTF}
+				gcc ${CFLAGS} $(SERV_OBJS) $(LIBFT) $(PRINTF)  -o $(NAME_SERVE)
+
+client: 	$(CLIENT_OBJS)
 			${MAKELIBFT}
 			${MAKEPRINTF}
-			gcc ${CFLAGS} $(OBJS) $(LIBFT) $(PRINTF)  -o $(NAME)
+			gcc ${CFLAGS} $(CLIENT_OBJS) $(LIBFT) $(PRINTF)  -o $(NAME_CLIENT)
 
 
 
@@ -40,13 +52,15 @@ clean:
 			@echo Cleaning out thos old .o
 			${MAKELIBFT} clean
 			${MAKEPRINTF} clean
-			rm -f $(OBJS)
+			rm -f $(CLIENT_OBJS)
+			rm -f $(SERV_OBJS)
 
 fclean:		clean
 			@echo Cleaning out that old $(NAME)
 			${MAKELIBFT} fclean
 			${MAKEPRINTF} fclean
-			rm -f $(NAME)
+			rm -f $(NAME_CLIENT)
+			rm -f $(NAME_SERVE)
 
 re:			fclean $(NAME)
 
