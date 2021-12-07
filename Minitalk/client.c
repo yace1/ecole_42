@@ -3,48 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:52:43 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/03 13:48:32 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/06 13:00:43 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int send_str(char *str, int sign, int len)
+void	send_str(char *str, int pid)
 {
 	int	i;
-	int	j;
+	int	bitshift;
 
-	j = 0;
-	while (j < len)
+	i = 0;
+	while (str[i])
 	{
-		while (i < 7)
+		bitshift = -1;
+		while (++bitshift < 8)
 		{
-			i = 0;
-			if ((str[j] >> i) & 1)
-				kill(9316, SIGUSR1);
+			if (str[i] & (128 >> bitshift))
+				kill(pid, SIGUSR1);
 			else
-				kill(9316, SIGUSR2);
-			i++;
-			sleep(0.1);
+				kill(pid, SIGUSR2);
+			usleep(200);
 		}
-		j++;
+		i++;
 	}
+}
+
+void	arg_error(void)
+{
+	ft_printf("Error, wrong arg given, give the pid");
+	ft_printf("of the server and a message to send\n");
+	exit (0);
 }
 
 // check SIGUSR1 SIGUSR2
 int	main(int argc, char **argv)
 {
-	int sig;
-	int	sign;
-	int	len;
+	int	pid;
+	int	bitshift;
 
-	sign = ft_atoi(argv[1]);
-	len = ft_strlen(argv[2]);
-	sig = SIGUSR1;
-	ft_printf("le signal: %d\n", sig);
-	kill(9316, SIGUSR1);
+	if (argc != 3)
+		arg_error();
+	bitshift = 0;
+	pid = ft_atoi(argv[1]);
+	send_str(argv[2], pid);
 	return (0);
 }
