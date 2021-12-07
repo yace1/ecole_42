@@ -1,4 +1,4 @@
-SRCS= push_swap.c
+SRCS= push_swap.c lst_util.c operation.c
 
 OBJS= ${SRCS:.c=.o}
 
@@ -9,6 +9,14 @@ LIBFT_LIB = libft/
 LIBFT  = $(addprefix $(LIBFT_LIB), $(LIBFT_A))
 
 MAKELIBFT=	make -C ./libft
+
+PRINTF_A = printf.a
+
+PRINTF_LIB = printf/
+
+PRINTF  = $(addprefix $(PRINTF_LIB), $(PRINTF_A))
+
+MAKEPRINTF = make -C ./printf
 
 CFLAGS= -Wall -Wextra -Werror
 NAME = push_swap
@@ -21,15 +29,20 @@ all: 		$(NAME)
 
 $(NAME): 	$(OBJS)
 			${MAKELIBFT}
-			gcc ${CFLAGS} $(OBJS) $(LIBFT)  -o $(NAME)
+			${MAKELIBFT} bonus
+			${MAKEPRINTF}
+			gcc ${CFLAGS} $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
 
 clean:
 			@echo Cleaning out thos old .o
+			${MAKEPRINTF} clean
 			${MAKELIBFT} clean
 			rm -f $(OBJS)
 
 fclean:		clean
 			@echo Cleaning out that old $(NAME)
+			${MAKEPRINTF} fclean
+			${MAKELIBFT} fclean
 			rm -f $(NAME)
 
 re:			fclean $(NAME)
