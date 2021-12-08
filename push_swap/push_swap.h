@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:44 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/07 23:31:24 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/08 10:29:18 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	stack_add_front(t_stack **alst, t_stack *new);
 t_stack	**parse_stck(t_stack **lst, char **argv, int argc);
 void	print_stack(t_stack **stck);
 t_stack	*stack_last(t_stack *lst);
+t_stack	*before_last(t_stack *lst);
 void	operations(t_stack **lsta, t_stack **lstb, int op);
 
 #endif

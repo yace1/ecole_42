@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 20:33:26 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/07 20:57:28 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/08 10:33:39 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ t_stack	*stack_last(t_stack *lst)
 	}
 	return (ptr);
 }
+
+t_stack	*before_last(t_stack *lst)
+{
+	t_stack	*ptr;
+
+	if (!lst)
+		return (lst);
+	ptr = lst;
+	while (ptr->next->next)
+	{
+		ptr = ptr->next;
+	}
+	return (ptr);
+}
+
 
 void	print_stack(t_stack **stck)
 {

@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/08 00:05:57 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/08 10:34:58 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,20 @@ int	main(int argc, char **argv)
 	//printf("%d\n", stack_last(*lsta)->data);
 	print_stack(lsta);
 	operations(lsta, lstb, 1);
-	ft_printf("\n\n");
+	ft_printf("apres operation\n");
 	print_stack(lsta);
 	operations(lsta, lstb, 4);
+	ft_printf("new lst\n");
 	print_stack(lstb);
-	//print_stack(lsta); sa segfault apres pa
-	ft_printf("\n");
+	ft_printf("apres operation\n");
+	print_stack(lsta); //sa segfault apres pa
+	operations(lsta, lstb, 6);
+	ft_printf("apres rotate\n");
+	print_stack(lsta);
+	operations(lsta, lstb, 6);
+	ft_printf("apres rotate\n");
+	print_stack(lsta);
+
 }
 
 t_stack	**parse_stck(t_stack **lst, char **argv, int argc)
