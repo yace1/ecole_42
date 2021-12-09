@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 20:33:26 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/08 10:33:39 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/09 13:24:15 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ void	print_stack(t_stack **stck)
 
 	if (!stck)
 		return (void)(0);
+	if (!*stck)
+	{
+		ft_printf("vide\n");
+		return	((void)(0));
+	}
 	ptr = *stck;
 	while (ptr->next)
 	{

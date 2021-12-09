@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/08 10:34:58 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/09 13:25:34 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,11 @@ int	main(int argc, char **argv)
 		return(0);
 	//printf("%d\n", stack_last(*lsta)->data);
 	print_stack(lsta);
-	operations(lsta, lstb, 1);
-	ft_printf("apres operation\n");
+	push_min_all(lsta, lstb, argc - 1);
+	ft_printf("a: \n");
 	print_stack(lsta);
-	operations(lsta, lstb, 4);
-	ft_printf("new lst\n");
+	ft_printf("b: \n");
 	print_stack(lstb);
-	ft_printf("apres operation\n");
-	print_stack(lsta); //sa segfault apres pa
-	operations(lsta, lstb, 6);
-	ft_printf("apres rotate\n");
-	print_stack(lsta);
-	operations(lsta, lstb, 6);
-	ft_printf("apres rotate\n");
-	print_stack(lsta);
-
 }
 
 t_stack	**parse_stck(t_stack **lst, char **argv, int argc)

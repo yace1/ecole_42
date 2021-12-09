@@ -1,4 +1,4 @@
-SRCS= push_swap.c lst_util.c operation.c
+SRCS= push_swap.c lst_util.c operation.c algo_min.c
 
 OBJS= ${SRCS:.c=.o}
 

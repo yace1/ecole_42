@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:44 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/08 10:29:18 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/09 13:24:53 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void	print_stack(t_stack **stck);
 t_stack	*stack_last(t_stack *lst);
 t_stack	*before_last(t_stack *lst);
 void	operations(t_stack **lsta, t_stack **lstb, int op);
+void	push_min(t_stack **lsta, t_stack **lstb);
+void	push_min_all(t_stack **lsta, t_stack **lstb,int	size_stack);
 
 #endif
