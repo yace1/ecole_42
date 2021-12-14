@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_util.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 20:33:26 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/09 13:24:15 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:02:47 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,17 @@ t_stack	*before_last(t_stack *lst)
 	return (ptr);
 }
 
-
-void	print_stack(t_stack **stck)
+int	stack_size(t_stack *lst)
 {
-	t_stack	*ptr;
+	int		i;
+	t_stack	*temp;
 
-	if (!stck)
-		return (void)(0);
-	if (!*stck)
+	temp = lst;
+	i = 0;
+	while (temp)
 	{
-		ft_printf("vide\n");
-		return	((void)(0));
+		temp = temp->next;
+		i++;
 	}
-	ptr = *stck;
-	while (ptr->next)
-	{
-		printf("%d\n", ptr->data);
-		ptr = ptr->next;
-	}
-	printf("%d\n", ptr->data);
+	return (i);
 }

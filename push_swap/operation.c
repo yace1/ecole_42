@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:00:13 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/09 12:45:28 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:26:46 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static void	sa_or_sb(t_stack **lst, int op);
-static void pa_or_pb(t_stack **lst1, t_stack **lst2, int op);
+static void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op);
 static void	ra_or_rb(t_stack **lst1, int op);
 static void	rra_or_rrb(t_stack **lst1, int op);
 
 /* operations:
 1 = sa		2 = sb		3 = ss
-4 = pa		5 = pb
+4 = pb		5 = pa
 6 = ra		7 = rb		8 = rr
 9 = rra		10 = rrb	11 = rrr
 */
@@ -61,7 +61,7 @@ void	operations(t_stack **lsta, t_stack **lstb, int op)
 static void	sa_or_sb(t_stack **lst, int op)
 {
 	t_stack	*temp;
-	
+
 	temp = *lst;
 	(*lst) = (*lst)->next;
 	temp->next = (*lst)->next;
@@ -75,12 +75,12 @@ static void	sa_or_sb(t_stack **lst, int op)
 }
 
 //check leak
-static void pa_or_pb(t_stack **lst1, t_stack **lst2, int op)
+static void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op)
 {
 	t_stack	*new;
 
 	if ((*lst1) == NULL)
-		return((void)0);
+		return ((void)0);
 	new = malloc(sizeof(t_stack));
 	if (!new)
 		return ((void)0);
@@ -88,28 +88,21 @@ static void pa_or_pb(t_stack **lst1, t_stack **lst2, int op)
 	stack_add_front(lst2, new);
 	(*lst1) = (*lst1)->next;
 	if (op == 4)
-		ft_printf("pa\n");
-	if (op == 5)
 		ft_printf("pb\n");
+	if (op == 5)
+		ft_printf("pa\n");
 }
 
 static void	ra_or_rb(t_stack **lst1, int op)
 {
-	t_stack *last;
-	t_stack *temp;
+	t_stack	*last;
+	t_stack	*temp;
 
 	last = stack_last(*lst1);
 	temp = (*lst1);
 	(*lst1) = (*lst1)->next;
 	last->next = temp;
 	temp->next = NULL;
-	// last = stack_last(*lst1);
-	// prev_last = before_last(*lst1);
-	// temp = (*lst1);
-	// last->next = (*lst1)->next;
-	// (*lst1) = last;
-	// prev_last->next = temp;
-	// temp->next = NULL;
 	if (op == 6)
 		ft_printf("ra\n");
 	if (op == 7)
@@ -120,9 +113,9 @@ static void	ra_or_rb(t_stack **lst1, int op)
 
 static void	rra_or_rrb(t_stack **lst1, int op)
 {
-	t_stack *last;
-	t_stack *prev_last;	
-	t_stack *temp;
+	t_stack	*last;
+	t_stack	*prev_last;	
+	t_stack	*temp;
 
 	last = stack_last(*lst1);
 	prev_last = before_last(*lst1);
@@ -130,9 +123,6 @@ static void	rra_or_rrb(t_stack **lst1, int op)
 	(*lst1) = last;
 	(*lst1)->next = temp;
 	prev_last->next = NULL;
-	// (*lst1) = last;
-	// prev_last->next = temp;
-	// temp->next = NULL;
 	if (op == 9)
 		ft_printf("rra\n");
 	if (op == 10)
