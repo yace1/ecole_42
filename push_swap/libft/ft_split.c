@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 10:23:25 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/21 17:30:42 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:47:08 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	**free_split(char **tab)
 	return (NULL);
 }
 
-static unsigned int	count_words(char const *s, char c)
+unsigned int	count_words(char const *s, char c)
 {
 	unsigned int	i;
 	unsigned int	nb_strs;
