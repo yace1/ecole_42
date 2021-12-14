@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/13 22:21:02 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/14 12:32:00 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	t_stack	**lsta;
 	t_stack	**lstb;
 	char	*lst;
+	int		*list;
 
 	lsta = malloc(sizeof(t_stack *));
 	if (!lsta)
@@ -34,7 +35,8 @@ int	main(int argc, char **argv)
 	lstb = malloc(sizeof(t_stack *));
 	if (!lstb)
 		return (0);
-	algo_min(lsta, lstb);
+	list = NULL;
+	stack_to_ind(lsta);
 	ft_printf("stack a\n");
 	print_stack(lsta);
 	// ft_printf("stack b\n");

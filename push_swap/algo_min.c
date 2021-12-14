@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:55:17 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/13 22:47:00 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/14 12:28:45 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

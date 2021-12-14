@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:44 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/13 22:45:18 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/14 12:32:05 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int		find_max_index(t_stack *lst);
 void	up_down_move(t_stack	**lsta, t_stack	**lstb, int index);
 int		is_sorted(t_stack *lst);
 int		max_index(t_stack *lst, int index);
+void	stack_to_ind(t_stack **lsta);
 
 #endif
