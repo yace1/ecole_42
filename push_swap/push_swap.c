@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/14 12:32:00 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/12/15 01:41:44 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ int	main(int argc, char **argv)
 	if (!lstb)
 		return (0);
 	list = NULL;
-	stack_to_ind(lsta);
-	ft_printf("stack a\n");
-	print_stack(lsta);
-	// ft_printf("stack b\n");
-	// print_stack(lstb);
+	//ft_printf("stack a\n");
+	//print_stack(lsta);
+	algo_radix(lsta, lstb);
+	//ft_printf("stack a\n");
+	//print_stack(lsta);
+	//ft_printf("stack b\n");
+	//print_stack(lstb);
+
 }
 
 void	print_stack(t_stack **stck)

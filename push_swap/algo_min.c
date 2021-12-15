@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:55:17 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/14 12:28:45 by ybentaye         ###   ########.fr       */
+/*   Updated: 2021/12/15 01:17:43 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ int	is_sorted(t_stack *lst)
 		if (temp->next != NULL)
 		{
 			if (temp->data > temp->next->data)
-				i = 0;
+				return (0);
 		}
 		temp = temp->next;
 		i++;
