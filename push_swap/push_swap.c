@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/16 22:55:16 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/20 12:25:48 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	if (!lstb)
 		exit_error();
 	choose_algo(lsta, lstb);
-	print_stack(lsta);
+	//print_stack(lsta);
 	free_stack(lsta);
 	free_stack(lstb);
 }

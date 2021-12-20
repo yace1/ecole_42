@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 11:58:16 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/16 23:28:33 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/20 12:44:50 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ void	algo_radix(t_stack **lsta, t_stack **lstb)
 		while (j++ < max + 1)
 		{
 			temp = (*lsta)->data;
-			if ((temp >> i) & 1)
-				operations(lsta, lstb, 6);
-			else
-				operations(lsta, lstb, 4);
+			op_radix(lsta, lstb, temp, i);
 		}
 		while (stack_size(*lstb))
 			operations(lsta, lstb, 5);
@@ -48,6 +45,10 @@ void	algo_radix(t_stack **lsta, t_stack **lstb)
 			return ((void)(0));
 	}
 }
+	// if ((temp >> i) & 1)
+	// 	operations(lsta, lstb, 6);
+	// else
+	// 	operations(lsta, lstb, 4);
 
 void	stack_to_ind(t_stack **lsta)
 {

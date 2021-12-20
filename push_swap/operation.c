@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:00:13 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/16 01:10:57 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/20 12:37:24 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	sa_or_sb(t_stack **lst, int op);
-static void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op);
-static void	ra_or_rb(t_stack **lst1, int op);
-static void	rra_or_rrb(t_stack **lst1, int op);
-void	double_operation(t_stack **lsta, t_stack **lstb, int op);
+// static void	sa_or_sb(t_stack **lst, int op);
+// static void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op);
+// static void	ra_or_rb(t_stack **lst1, int op);
+// static void	rra_or_rrb(t_stack **lst1, int op);
 
 /* operations:
 1 = sa		2 = sb		3 = ss
@@ -50,7 +49,7 @@ void	operations(t_stack **lsta, t_stack **lstb, int op)
 		double_operation(lsta, lstb, 11);
 }
 
-static void	sa_or_sb(t_stack **lst, int op)
+void	sa_or_sb(t_stack **lst, int op)
 {
 	t_stack	*temp;
 
@@ -67,7 +66,7 @@ static void	sa_or_sb(t_stack **lst, int op)
 }
 
 //check leak
-static void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op)
+void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op)
 {
 	t_stack	*new;
 
@@ -85,7 +84,7 @@ static void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op)
 		ft_printf("pa\n");
 }
 
-static void	ra_or_rb(t_stack **lst1, int op)
+void	ra_or_rb(t_stack **lst1, int op)
 {
 	t_stack	*last;
 	t_stack	*temp;
@@ -103,7 +102,7 @@ static void	ra_or_rb(t_stack **lst1, int op)
 		ft_printf("rr\n");
 }
 
-static void	rra_or_rrb(t_stack **lst1, int op)
+void	rra_or_rrb(t_stack **lst1, int op)
 {
 	t_stack	*last;
 	t_stack	*prev_last;	
@@ -119,24 +118,4 @@ static void	rra_or_rrb(t_stack **lst1, int op)
 		ft_printf("rra\n");
 	if (op == 10)
 		ft_printf("rrb\n");
-}
-
-//3 = ss 11 = rrr 8 = rr
-void	double_operation(t_stack **lsta, t_stack **lstb, int op)
-{
-	if (op == 3)
-	{
-		sa_or_sb(lsta, 28);
-		sa_or_sb(lstb, 0);
-	}
-	else if (op == 8)
-	{
-		ra_or_rb(lsta, 8);
-		ra_or_rb(lsta, 0);
-	}
-	else if (op == 11)
-	{
-		rra_or_rrb(lsta, 11);
-		rra_or_rrb(lstb, 0);
-	}
 }

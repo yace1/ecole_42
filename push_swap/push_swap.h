@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:44 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/16 22:48:13 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/20 12:42:22 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,11 @@ t_stack	**parsing(t_stack **lst, char **argv, int argc);
 void	less_than5(t_stack **lsta, t_stack **lstb);
 void	less_than3(t_stack **lsta, t_stack **lstb);
 void	choose_algo(t_stack **lsta, t_stack **lstb);
+void	double_operation(t_stack **lsta, t_stack **lstb, int op);
+void	rra_or_rrb(t_stack **lst1, int op);
+void	ra_or_rb(t_stack **lst1, int op);
+void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op);
+void	sa_or_sb(t_stack **lst, int op);
+void	op_radix(t_stack **lsta, t_stack **lstb, int t, int i);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:55:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/16 22:55:53 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/20 12:46:57 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,4 @@ void	choose_algo(t_stack **lsta, t_stack **lstb)
 		less_than5(lsta, lstb);
 	else
 		algo_radix(lsta, lstb);
-	ft_printf("nb: %d\n", nb);
 }

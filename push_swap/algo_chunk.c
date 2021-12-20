@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_chunk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:37:14 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/16 22:49:29 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/20 12:26:22 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		find_min(t_stack *lst);
 int		find_max(t_stack *lst);
 int		first_push(int bot, int top, t_stack *lst);
 int		find_max_index(t_stack *lst);
-
 
 int	first_push(int bot, int top, t_stack *lst)
 {
