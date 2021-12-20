@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:55:17 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/15 01:17:43 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/16 22:53:21 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ void	push_min(t_stack **lsta, t_stack **lstb)
 		i++;
 	}
 	up_down(lsta, lstb, index);
-	// while (index-- > 0)
-	// 	operations(lsta, lstb, 6);
-	// operations(lsta, lstb, 4);
 }
 
 void	push_min_all(t_stack **lsta, t_stack **lstb, int size_stack)
@@ -47,7 +44,7 @@ void	push_min_all(t_stack **lsta, t_stack **lstb, int size_stack)
 
 	i = 0;
 	j = 0;
-	while (i < size_stack / 2) // size_stack / 2
+	while (i < size_stack / 2)
 	{
 		push_min(lsta, lstb);
 		i++;
@@ -55,12 +52,11 @@ void	push_min_all(t_stack **lsta, t_stack **lstb, int size_stack)
 	ft_printf("ici\n");
 	while (!is_sorted(*lsta))
 	{
-		k = max_index(*lsta, j); //recheck tjr le meme index faut trouver une solution
-		up_down_move(lsta, lstb, k); //
+		k = max_index(*lsta, j);
+		up_down_move(lsta, lstb, k);
 		j++;
 	}
 }
-// tester de trier apres avoir push
 
 void	push_all_back(t_stack **lsta, t_stack **lstb)
 {
@@ -79,7 +75,6 @@ void	algo_min(t_stack **lsta, t_stack **lstb)
 	push_all_back(lsta, lstb);
 }
 
-//check if we need to ra or rra
 void	up_down(t_stack	**lsta, t_stack	**lstb, int index)
 {
 	if (index == 0)
@@ -104,8 +99,6 @@ void	up_down(t_stack	**lsta, t_stack	**lstb, int index)
 		}
 	}
 	operations(lsta, lstb, 4);
-	// if ((*lstb)->data < (*lstb)->next->data && stack_size(*lstb) >= 2)
-	// 	operations(lsta, lstb, 3);
 }
 
 void	up_down_move(t_stack	**lsta, t_stack	**lstb, int index)
@@ -131,8 +124,6 @@ void	up_down_move(t_stack	**lsta, t_stack	**lstb, int index)
 			index++;
 		}
 	}
-	// if ((*lstb)->data < (*lstb)->next->data && stack_size(*lstb) >= 2)
-	// 	operations(lsta, lstb, 3);
 }
 
 int	is_sorted(t_stack *lst)

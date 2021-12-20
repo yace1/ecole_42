@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:44 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/15 01:48:42 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/16 22:48:13 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	push_min_all(t_stack **lsta, t_stack **lstb, int size_stack);
 int		stack_size(t_stack *lst);
 void	push_all_back(t_stack **lsta, t_stack **lstb);
 void	algo_min(t_stack **lsta, t_stack **lstb);
-void	chunk_algo(t_stack **lsta, t_stack **lstb);
 void	up_down(t_stack	**lsta, t_stack	**lstb, int index);
 int		find_max_index(t_stack *lst);
 void	up_down_move(t_stack	**lsta, t_stack	**lstb, int index);
@@ -52,5 +51,13 @@ int		max_index(t_stack *lst, int index);
 void	stack_to_ind(t_stack **lsta);
 int		find_max(t_stack *lst);
 void	algo_radix(t_stack **lsta, t_stack **lstb);
+void	free_stack(t_stack **lst);
+void	exit_error(void);
+void	check_doublon(t_stack **lst);
+void	check_char(char *str);
+t_stack	**parsing(t_stack **lst, char **argv, int argc);
+void	less_than5(t_stack **lsta, t_stack **lstb);
+void	less_than3(t_stack **lsta, t_stack **lstb);
+void	choose_algo(t_stack **lsta, t_stack **lstb);
 
 #endif

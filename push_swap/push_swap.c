@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/15 01:41:44 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/16 22:55:16 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,18 @@ int	main(int argc, char **argv)
 {
 	t_stack	**lsta;
 	t_stack	**lstb;
-	char	*lst;
-	int		*list;
 
 	lsta = malloc(sizeof(t_stack *));
 	if (!lsta)
-		return (0);
-	if (argc < 2)
-		return (0);
-	if (argc == 2)
-	{
-		lst = argv[1];
-		lsta = parse_stck2(lsta, ft_split(lst, ' '),
-				count_words(lst, ' '));
-	}
-	else
-		lsta = parse_stck(lsta, argv, argc);
+		exit_error();
+	lsta = parsing(lsta, argv, argc);
 	lstb = malloc(sizeof(t_stack *));
 	if (!lstb)
-		return (0);
-	list = NULL;
-	//ft_printf("stack a\n");
-	//print_stack(lsta);
-	algo_radix(lsta, lstb);
-	//ft_printf("stack a\n");
-	//print_stack(lsta);
-	//ft_printf("stack b\n");
-	//print_stack(lstb);
-
+		exit_error();
+	choose_algo(lsta, lstb);
+	print_stack(lsta);
+	free_stack(lsta);
+	free_stack(lstb);
 }
 
 void	print_stack(t_stack **stck)
@@ -60,10 +44,8 @@ void	print_stack(t_stack **stck)
 	ptr = *stck;
 	while (ptr->next)
 	{
-		printf("%d\n", ptr->data);
+		ft_printf("%d\n", ptr->data);
 		ptr = ptr->next;
 	}
-	printf("%d\n", ptr->data);
+	ft_printf("%d\n", ptr->data);
 }
-
-

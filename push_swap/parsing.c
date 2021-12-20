@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:55:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/10 17:06:35 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2021/12/16 22:55:53 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,25 @@ static void	error_check(void)
 {
 	ft_putstr_fd("error\n", 1);
 	exit (0);
+}
+
+t_stack	**parsing(t_stack **lst, char **argv, int argc)
+{
+	char	*str;
+
+	if (argc < 2)
+		exit_error();
+	if (argc == 2)
+	{
+		str = argv[1];
+		check_char(str);
+		lst = parse_stck2(lst, ft_split(str, ' '),
+				count_words(str, ' '));
+		check_doublon(lst);
+	}
+	else
+		lst = parse_stck(lst, argv, argc);
+	return (lst);
 }
 
 t_stack	**parse_stck(t_stack **lst, char **argv, int argc)
@@ -76,20 +95,22 @@ t_stack	**parse_stck2(t_stack **lst, char **str, int size)
 	return (lst);
 }
 
-/* if using array
+void	choose_algo(t_stack **lsta, t_stack **lstb)
+{
+	int	nb;
 
-	argv = (void *)argv;
-	int	*list_a;
-	int	*list_b;
-	int	i;
-
-	i = 0;
-	list_a = malloc(sizeof(int) * (argc));
-	list_b = malloc(sizeof(int) * (argc));
-	while (i < argc - 1)
-	{
-		list_a[i] = ft_atoi(argv[i + 1]);
-		printf("%d\n",list_a[i]);
-		i++;
-	}
-*/
+	nb = stack_size(*lsta);
+	if (is_sorted(*lsta))
+		return ((void)(0));
+	else if (nb == 0)
+		error_check();
+	else if (nb == 1)
+		exit (0);
+	else if (nb == 3)
+		less_than3(lsta, lstb);
+	else if (nb == 5)
+		less_than5(lsta, lstb);
+	else
+		algo_radix(lsta, lstb);
+	ft_printf("nb: %d\n", nb);
+}

@@ -1,4 +1,5 @@
-SRCS= push_swap.c lst_util.c operation.c algo_min.c parsing.c algo_chunk.c algo_radix.c
+SRCS= push_swap.c lst_util.c operation.c algo_min.c parsing.c algo_chunk.c algo_radix.c\
+		error_check.c less_nbr.c
 
 OBJS= ${SRCS:.c=.o}
 
