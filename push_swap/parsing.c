@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:55:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/20 12:46:57 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/01/13 00:36:33 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_stack	**parsing(t_stack **lst, char **argv, int argc)
 	char	*str;
 
 	if (argc < 2)
-		exit_error();
+		exit (0);
 	if (argc == 2)
 	{
 		str = argv[1];
@@ -33,7 +33,10 @@ t_stack	**parsing(t_stack **lst, char **argv, int argc)
 		check_doublon(lst);
 	}
 	else
+	{
 		lst = parse_stck(lst, argv, argc);
+		check_doublon(lst);
+	}
 	return (lst);
 }
 

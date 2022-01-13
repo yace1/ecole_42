@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 11:58:16 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/20 12:44:50 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/01/12 23:44:17 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	algo_radix(t_stack **lsta, t_stack **lstb)
 	int	max;
 	int	max_bit;
 	int	j;
-	int	temp;
 
 	stack_to_ind(lsta);
 	max = stack_size(*lsta) - 1;
@@ -31,18 +30,16 @@ void	algo_radix(t_stack **lsta, t_stack **lstb)
 	while (max >> max_bit)
 		max_bit++;
 	i = 0;
-	while (i++ < max_bit)
+	while (i < max_bit)
 	{
-		j = 0;
-		while (j++ < max + 1)
-		{
-			temp = (*lsta)->data;
-			op_radix(lsta, lstb, temp, i);
-		}
+		j = -1;
+		while (++j < max + 1)
+			op_radix(lsta, lstb, (*lsta)->data, i);
 		while (stack_size(*lstb))
 			operations(lsta, lstb, 5);
 		if (is_sorted(*lsta) && !stack_size(*lstb))
 			return ((void)(0));
+		i++;
 	}
 }
 	// if ((temp >> i) & 1)

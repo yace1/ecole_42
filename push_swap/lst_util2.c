@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_util2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 12:28:31 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/12/20 12:43:21 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/01/12 23:26:00 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
