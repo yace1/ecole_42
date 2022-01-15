@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:47:15 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/01/13 01:06:49 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/01/15 01:43:31 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	check_char(char *str)
 	}
 }
 
+void	check_max_int(int nb, t_stack **lst)
+{
+	if (nb > 2147483647)
+	{
+		free_stack(lst);
+		exit_error();
+	}
+}
+
 void	check_doublon(t_stack **lst)
 {
 	t_stack	*temp;
@@ -38,6 +47,7 @@ void	check_doublon(t_stack **lst)
 	{
 		ptr = (*lst);
 		j = 0;
+		check_max_int(temp->data, lst);
 		while (ptr)
 		{
 			if (temp->data == ptr->data && i != j)

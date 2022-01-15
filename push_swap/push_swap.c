@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:20 by ybentaye          #+#    #+#             */
-/*   Updated: 2022/01/12 23:36:53 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/01/15 01:44:18 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	main(int argc, char **argv)
 	if (!lstb)
 		exit_error();
 	choose_algo(lsta, lstb);
-	//print_stack(lsta);
 	free_stack(lsta);
 	free_stack(lstb);
 }
+//print_stack(lsta);
 
 void	print_stack(t_stack **stck)
 {

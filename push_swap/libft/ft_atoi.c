@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:08:39 by ybentaye          #+#    #+#             */
-/*   Updated: 2021/10/13 19:53:09 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/01/15 01:40:40 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,33 @@ int	ft_atoi(const char *str)
 	int	i;
 	int	nb;
 	int	sign;
+
+	i = 0;
+	nb = 0;
+	sign = 1;
+	str = (const char *)remove_space((char *)str);
+	if (str[0] == '-' || str[0] == '+')
+	{
+		if (str[0] == '-')
+		{
+			sign = -1;
+		}
+		str++;
+	}
+	while (str[i] != '\0' && (str[i] > 47 && str[i] < 58))
+	{
+		nb *= 10;
+		nb += (str[i] - 48);
+		i++;
+	}
+	return (nb * sign);
+}
+
+long	ft_atol(const char *str)
+{
+	int				i;
+	long			nb;
+	int				sign;
 
 	i = 0;
 	nb = 0;

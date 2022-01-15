@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:55:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/01/13 00:36:33 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/01/15 01:39:36 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_stack	**parse_stck(t_stack **lst, char **argv, int argc)
 	first = malloc(sizeof(t_stack));
 	if (!first)
 		error_check();
-	first->data = ft_atoi(argv[1]);
+	first->data = ft_atol(argv[1]);
 	first->next = NULL;
 	last = first;
 	i = 2;
@@ -59,7 +59,7 @@ t_stack	**parse_stck(t_stack **lst, char **argv, int argc)
 		temp = malloc(sizeof(t_stack));
 		if (!temp)
 			error_check();
-		temp->data = ft_atoi(argv[i]);
+		temp->data = ft_atol(argv[i]);
 		temp->next = NULL;
 		last->next = temp;
 		last = temp;
@@ -79,7 +79,7 @@ t_stack	**parse_stck2(t_stack **lst, char **str, int size)
 	first = malloc(sizeof(t_stack));
 	if (!first)
 		error_check();
-	first->data = ft_atoi(str[0]);
+	first->data = ft_atol(str[0]);
 	first->next = NULL;
 	last = first;
 	i = 1;
@@ -88,7 +88,7 @@ t_stack	**parse_stck2(t_stack **lst, char **str, int size)
 		temp = malloc(sizeof(t_stack));
 		if (!temp)
 			error_check();
-		temp->data = ft_atoi(str[i]);
+		temp->data = ft_atol(str[i]);
 		temp->next = NULL;
 		last->next = temp;
 		last = temp;

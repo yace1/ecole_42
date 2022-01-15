@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 14:58:31 by ybentaye          #+#    #+#             */
-/*   Updated: 2022/01/12 23:49:45 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/01/14 15:17:09 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 unsigned int	count_words(char const *s, char c);
+long			ft_atol(const char *str);
 
 #endif
