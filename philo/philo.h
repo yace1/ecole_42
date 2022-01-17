@@ -7,11 +7,13 @@
 
 typedef struct s_phil
 {
-	double	tm_die;
-	double 	tm_sleep;
-	double	tm_eat;
-	int		eat_state;
-	int		index;
+	int					tm_die;
+	int 				tm_sleep;
+	int					tm_eat;
+	int					fork;
+	int					index;
+	int					nb;
+	pthread_mutex_t	*mut;
 	struct s_phil	*lst;
 }	t_phil;
 
