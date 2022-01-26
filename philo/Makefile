@@ -1,4 +1,4 @@
-SRCS= philo.c
+SRCS= philo.c action.c error_free.c
 
 OBJS= ${SRCS:.c=.o}
 
