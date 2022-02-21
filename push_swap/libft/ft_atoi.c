@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:08:39 by ybentaye          #+#    #+#             */
-/*   Updated: 2022/01/15 01:40:40 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/02/20 14:07:41 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ int	ft_atoi(const char *str)
 	return (nb * sign);
 }
 
+void	check_maxint(int nb)
+{
+	if (nb > 2147483647)
+	{
+		printf("Error\n");
+		exit (0);
+	}
+}
+
 long	ft_atol(const char *str)
 {
 	int				i;
@@ -73,6 +82,7 @@ long	ft_atol(const char *str)
 		nb += (str[i] - 48);
 		i++;
 	}
+	check_maxint(nb);
 	return (nb * sign);
 }
 

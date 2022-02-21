@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:47:15 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/01/15 01:43:31 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/02/19 12:28:35 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	check_char(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && str[i] != ' ' && str[i] != '-')
+		{
 			exit_error();
+		}
 		i++;
 	}
 }

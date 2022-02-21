@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_chunk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:37:14 by yacinebenta       #+#    #+#             */
-/*   Updated: 2021/12/20 12:26:22 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:20:34 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

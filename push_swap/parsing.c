@@ -6,13 +6,13 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:55:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/01/15 01:39:36 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/02/20 15:37:57 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	error_check(void)
+void	error_check(void)
 {
 	ft_putstr_fd("error\n", 1);
 	exit (0);
@@ -27,7 +27,6 @@ t_stack	**parsing(t_stack **lst, char **argv, int argc)
 	if (argc == 2)
 	{
 		str = argv[1];
-		check_char(str);
 		lst = parse_stck2(lst, ft_split(str, ' '),
 				count_words(str, ' '));
 		check_doublon(lst);

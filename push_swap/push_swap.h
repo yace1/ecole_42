@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:14:44 by ybentaye          #+#    #+#             */
-/*   Updated: 2022/01/14 15:18:16 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/02/19 13:02:42 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ typedef struct s_stack
 	long			data;
 	struct s_stack	*next;
 }	t_stack;
+
+typedef struct s_lst
+{
+	int		*lst;
+	int		len;
+	int		max_len;
+}	t_lst;
 
 typedef struct s_chunk
 {
@@ -65,5 +72,28 @@ void	ra_or_rb(t_stack **lst1, int op);
 void	pa_or_pb(t_stack **lst1, t_stack **lst2, int op);
 void	sa_or_sb(t_stack **lst, int op);
 void	op_radix(t_stack **lsta, t_stack **lstb, int t, int i);
-
+void	error_check(void);
+//with int table instead of linked list
+t_lst	*parsing_lst(char **argv, int argc);
+void	check_dbl_lst(t_lst *list);
+t_lst	*split_parsing(char **str, int size);
+t_lst	*nrml_lst_parsing(char **str, int size);
+void	operations_lst(t_lst *lsta, t_lst *lstb, int op);
+void	sa_or_sb_lst(t_lst *list, int op);
+void	pa_or_pb_lst(t_lst *list_a, t_lst *list_b, int op);
+void	ra_or_rb_lst(t_lst *list_a, int op);
+void	rra_or_rrb_lst(t_lst *list_a, int op);
+void	double_operation_lst(t_lst *lsta, t_lst *lstb, int op);
+void	op_radix_lst(t_lst *lsta, t_lst *lstb, int t, int i);
+void	algo_radix_lst(t_lst *lsta, t_lst *lstb);
+void	print_lst(t_lst list);
+void	less_than3_lst(t_lst *lsta, t_lst *lstb);
+void	less_than5_lst(t_lst *lsta, t_lst *lstb);
+int		is_lst_sorted(t_lst *lst);
+void	choose_algo_lst(t_lst *lsta, t_lst *lstb);
+void	free_lst(t_lst *lsta, t_lst *lstb);
+int		*update_lst_b(t_lst *list_a, t_lst *list_b, int *cp_b);
+int		*update_lst_a(t_lst *list_a, int *cp_a);
+void	swap(int *xp, int *yp);
+int		*sort_lst(int *lst, int size);
 #endif
